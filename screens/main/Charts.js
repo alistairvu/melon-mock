@@ -1,9 +1,9 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { ActivityIndicator, FlatList } from "react-native"
-import { SafeAreaView, StyleSheet, View } from "react-native"
+import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
-import ChartItem from "../../components/ChartItem"
+import ChartItem from "../../components/SongItem"
 import { StatusBar } from "expo-status-bar"
 
 const Charts = () => {
@@ -13,10 +13,11 @@ const Charts = () => {
   const [songData, setSongData] = useState([])
 
   const urlChart =
-    "https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/100/explicit.json"
+    "https://rss.itunes.apple.com/api/v1/vn/itunes-music/top-songs/all/100/explicit.json"
 
   const getSongs = async () => {
     try {
+      setLoaded(false)
       const res = await axios.get(urlChart)
       const data = await res.data
       setSongData(data.feed.results)
@@ -82,7 +83,7 @@ const Charts = () => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 10,
+    marginLeft: 10,
     marginTop: 60,
     flex: 1,
   },

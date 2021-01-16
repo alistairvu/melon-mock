@@ -1,10 +1,30 @@
 import React from "react"
-import { View, Text, Image, StyleSheet, Button } from "react-native"
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Button,
+  TouchableOpacity,
+} from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
+import { useDispatch } from "react-redux"
 
-const ChartItem = ({ title, artist, image }) => {
+const SongItem = ({ title, artist, image }) => {
+  const navigation = useNavigation()
+  const dispatch = useDispatch()
+
+  const handlePress = () => {
+    dispatch({
+      type: "NEW_SONG",
+      payload: { artist, title, image },
+    })
+    navigation.navigate("Playing")
+  }
+
   return (
-    <View style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <View style={styles.data}>
         <Image style={styles.image} source={{ uri: image }} />
         <View style={styles.info}>
@@ -17,10 +37,9 @@ const ChartItem = ({ title, artist, image }) => {
         </View>
       </View>
       <View style={styles.buttons}>
-        <MaterialIcons name="play-arrow" size={30} color="black" />
         <MaterialIcons name="more-vert" size={30} color="black" />
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 
@@ -66,4 +85,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ChartItem
+export default SongItem

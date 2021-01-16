@@ -9,15 +9,16 @@ import {
 import { StatusBar } from "expo-status-bar"
 import PlayingInfo from "../../components/PlayingInfo"
 import PlayingControls from "../../components/PlayingControls"
+import { useSelector } from "react-redux"
 
 const Playing = () => {
-  const imageSource =
-    "https://ww.namu.la/s/1b065ed63fbc45bab1b540b0b69e0510396d73db2d99b2c8f55da237904b77cb5484441a5692ee07acd61385398ac8272db31a2ff8306828051fdffe1b9c92420ef7e01ca5b8ddd237bad7456080ce7622e565d770117f0ffd3789d5cc887ebc42b7c6d54d4fcc2c781850d109143947"
+  const song = useSelector((state) => state.song)
+  const { artist, title, image } = song
 
   return (
     <ImageBackground
       source={{
-        uri: imageSource,
+        uri: image,
       }}
       style={styles.background}
       blurRadius={40}
@@ -26,10 +27,10 @@ const Playing = () => {
       <View style={styles.container}>
         <SafeAreaView style={styles.safeContainer}>
           <View style={styles.topInfo}>
-            <PlayingInfo artist="이달의 소녀" title="new (이브)" />
+            <PlayingInfo artist={artist} title={title} />
           </View>
           <View style={styles.coverContainer}>
-            <Image source={{ uri: imageSource }} style={styles.coverArt} />
+            <Image source={{ uri: image }} style={styles.coverArt} />
           </View>
           <View style={styles.controls}>
             <PlayingControls />
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   coverArt: {
-    width: 350,
-    height: 350,
+    width: 300,
+    height: 300,
     resizeMode: "stretch",
   },
   controls: {

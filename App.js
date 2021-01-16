@@ -3,6 +3,8 @@ import { NavigationContainer } from "@react-navigation/native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { createStackNavigator } from "@react-navigation/stack"
 import { View, StyleSheet } from "react-native"
+import { Provider } from "react-redux"
+import store from "./redux/store"
 
 import Main from "./screens/Main"
 import SplashScreen from "./screens/Splash"
@@ -22,16 +24,18 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator headerMode={false} mode={"modal"}>
-        <Stack.Screen name="Main" component={Main} />
-        <Stack.Screen
-          name="Playing"
-          component={Playing}
-          options={{ gestureDirection: "vertical" }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator headerMode={false} mode={"modal"}>
+          <Stack.Screen name="Main" component={Main} />
+          <Stack.Screen
+            name="Playing"
+            component={Playing}
+            options={{ gestureDirection: "vertical" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
 
