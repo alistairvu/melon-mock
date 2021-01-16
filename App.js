@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react"
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { NavigationContainer } from "@react-navigation/native"
 import { MaterialIcons } from "@expo/vector-icons"
+import { createStackNavigator } from "@react-navigation/stack"
 import { View, StyleSheet } from "react-native"
 
-import ChartScreen from "./screens/main/Charts"
-import HomeScreen from "./screens/main/Home"
-import LibraryScreen from "./screens/main/Library"
-import SearchScreen from "./screens/main/Search"
+import Main from "./screens/Main"
 import SplashScreen from "./screens/Splash"
+import Playing from "./screens/main/Playing"
 
-const Tab = createBottomTabNavigator()
+const Stack = createStackNavigator()
 
 export default function App() {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => setLoaded(true), 2000)
+    setTimeout(() => setLoaded(true), 500)
   })
 
   if (!loaded) {
@@ -24,64 +22,21 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <NavigationContainer>
-        <Tab.Navigator
-          initialRouteName="Home"
-          tabBarOptions={{
-            activeTintColor: "rgb(97, 209, 84)",
-            showLabel: false,
-          }}
-        >
-          <Tab.Screen
-            name="Home"
-            component={HomeScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons name="home-filled" size={35} color={color} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Charts"
-            component={ChartScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons
-                  name="local-fire-department"
-                  size={35}
-                  color={color}
-                />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Search"
-            component={SearchScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons name="search" size={35} color={color} />
-              ),
-            }}
-          />
-          <Tab.Screen
-            name="Library"
-            component={LibraryScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons name="library-music" size={35} color={color} />
-              ),
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator headerMode={false} mode={"modal"}>
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen
+          name="Playing"
+          component={Playing}
+          options={{ gestureDirection: "vertical" }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
 })

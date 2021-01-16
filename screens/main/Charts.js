@@ -4,6 +4,7 @@ import { ActivityIndicator, FlatList } from "react-native"
 import { SafeAreaView, StyleSheet, View } from "react-native"
 import { Text } from "react-native-elements"
 import ChartItem from "../../components/ChartItem"
+import { StatusBar } from "expo-status-bar"
 
 const Charts = () => {
   const [date, setDate] = useState(null)
@@ -11,21 +12,14 @@ const Charts = () => {
   const [loaded, setLoaded] = useState(false)
   const [songData, setSongData] = useState([])
 
+  const urlChart =
+    "https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/100/explicit.json"
+
   const getSongs = async () => {
     try {
-      const res = await axios.get(
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF?fields=tracks(items(track(album(name%2Cimages)%2Cartists(name)%2Cname%2Cid)))",
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization:
-              "Bearer BQCb1s-iRA5RMnsEVA9heh2iusNMIOQyujhdKlIdQ4gUcy3eoLy4qAiJKnm1ndTsWTZuX6SzvwqF1PhHafAftUQZgoBenbs8LG37K-vI3Hw3JNo9bRlH9OK4njmRb-IMYtqVz6kN4WYyb7xOxQx0X9phM748GQ",
-          },
-        }
-      )
+      const res = await axios.get(urlChart)
       const data = await res.data
-      setSongData(data.tracks.items)
+      setSongData(data.feed.results)
       setLoaded(true)
     } catch (error) {
       console.log(error)
@@ -55,7 +49,7 @@ const Charts = () => {
     return (
       <SafeAreaView style={styles.loading}>
         <Text style={styles.loadingHeading}>Top Songs</Text>
-        <View style={styles.loading}>
+        <View style={styles.loadSpinner}>
           <ActivityIndicator size="large"></ActivityIndicator>
         </View>
       </SafeAreaView>
@@ -64,19 +58,14 @@ const Charts = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" />
       <Text style={styles.heading}>Top Songs</Text>
-
       <FlatList
         data={songData}
         renderItem={({ item }) => {
-          const { album, artists, name } = item.track
-          const artistDisplay = artists.map((x) => x.name).join(", ")
+          const { artistName, name, artworkUrl100 } = item
           return (
-            <ChartItem
-              artist={artistDisplay}
-              title={name}
-              image={album.images[1].url}
-            />
+            <ChartItem artist={artistName} title={name} image={artworkUrl100} />
           )
         }}
         ListHeaderComponent={
@@ -85,7 +74,7 @@ const Charts = () => {
           </Text>
         }
         style={styles.chartList}
-        keyExtractor={({ track }) => track.id}
+        keyExtractor={(item) => item.id}
       />
     </SafeAreaView>
   )
@@ -112,8 +101,6 @@ const styles = StyleSheet.create({
   },
   loading: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
     marginHorizontal: 10,
     marginTop: 60,
   },
@@ -125,6 +112,10 @@ const styles = StyleSheet.create({
   },
   chartList: {
     flex: 1,
+  },
+  loadSpinner: {
+    flex: 1,
+    justifyContent: "center",
   },
 })
 
