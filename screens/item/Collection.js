@@ -81,7 +81,7 @@ const Collection = () => {
                     {albumName}
                   </Text>
                   <Text style={styles.artist} numberOfLines={1}>
-                    {artist}
+                    {artist.split(",")[0]}
                   </Text>
                   <Text style={styles.releaseDate} numberOfLines={1}>
                     {releaseDateDisplay}
