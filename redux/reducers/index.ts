@@ -7,4 +7,5 @@ const rootReducer = combineReducers({
   status: statusReducer,
 })
 
+export type rootState = ReturnType<typeof rootReducer>
 export default rootReducer

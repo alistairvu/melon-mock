@@ -14,7 +14,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 
 const Queue = () => {
-  const image = useSelector(({ song }) => song.image)
+  const image = useSelector(({ song: songState }) => song.image)
   const dispatch = useDispatch()
   const navigation = useNavigation()
   const { playing, shuffle, loop } = useSelector((state) => state.status)
