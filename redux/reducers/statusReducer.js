@@ -1,5 +1,5 @@
 const initialState = {
-  playing: false,
+  playing: true,
   shuffle: false,
   loop: 0,
 }
