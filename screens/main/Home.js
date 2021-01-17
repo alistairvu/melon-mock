@@ -1,6 +1,5 @@
 import React from "react"
 import { StyleSheet, Image, View } from "react-native"
-import { Text } from "react-native-elements"
 import { MaterialIcons } from "@expo/vector-icons"
 import HomeItem from "../../components/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
@@ -28,7 +27,7 @@ const Home = () => {
           type={"songs"}
         />
         <HomeItem
-          link="37i9dQZEVXbLiRSasKsNU9"
+          link="37i9dQZEVXbL1G1MbPav3j"
           title={"Burning Up"}
           type={"songs"}
         />

@@ -1,11 +1,5 @@
 import React, { useState } from "react"
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  ActivityIndicator,
-  View,
-} from "react-native"
+import { SafeAreaView, StyleSheet, TextInput, View } from "react-native"
 import { Text } from "react-native-elements"
 import PlayingComponent from "../../components/PlayingComponent"
 import { getToken } from "../../utils"

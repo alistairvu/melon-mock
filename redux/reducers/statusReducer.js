@@ -8,6 +8,8 @@ const statusReducer = (state = initialState, action) => {
   const { type, payload } = action
 
   switch (type) {
+    case "SET_PLAY":
+      return { ...state, playing: payload }
     case "FLIP_PLAY":
       return { ...state, playing: !state.playing }
     case "FLIP_SHUFFLE":

@@ -27,7 +27,11 @@ const AlbumItem = ({
     dispatch({
       type: "NEW_SONG",
       payload: { artist, title, image, releaseDate, albumName, albumId },
-    })
+    }),
+      dispatch({
+        type: "SET_PLAY",
+        payload: true,
+      })
   }
 
   return (

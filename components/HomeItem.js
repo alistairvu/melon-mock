@@ -73,6 +73,10 @@ const HomeItem = (props) => {
                         albumId: album.id,
                       },
                     })
+                    dispatch({
+                      type: "SET_PLAY",
+                      payload: true,
+                    })
                   } else {
                     navigation.navigate("Collection", {
                       artist: artists.map((x) => x.name).join(", "),

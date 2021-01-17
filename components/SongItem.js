@@ -35,6 +35,10 @@ const SongItem = ({
         albumId,
       },
     })
+    dispatch({
+      type: "SET_PLAY",
+      payload: true,
+    })
   }
 
   return (
