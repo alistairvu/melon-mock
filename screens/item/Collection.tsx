@@ -9,20 +9,23 @@ import {
   ActivityIndicator,
 } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import { useNavigation, useRoute } from "@react-navigation/native"
+import { useNavigation, useRoute, RouteProp } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
 import AlbumItem from "../../components/AlbumItem"
 import { getToken } from "../../utils"
 
 const Collection = () => {
-  const route = useRoute()
+  const route: RouteProp<
+    { params: { [key: string]: string } },
+    "params"
+  > = useRoute()
   const { artist, albumName, image, releaseDate, albumId } = route.params
   const navigation = useNavigation()
   const releaseDateDisplay = releaseDate.split("-").reverse().join("/")
 
   const [loaded, setLoaded] = useState(false)
-  const [trackList, setTrackList] = useState([])
+  const [trackList, setTrackList] = useState<Array<any>>([])
 
   const getTracks = async () => {
     const token = await getToken()
@@ -39,8 +42,8 @@ const Collection = () => {
         }
       )
       const data = await res.json()
-      const trackData = data.items.map((item) => ({
-        artist: item.artists.map((x) => x.name).join(", "),
+      const trackData = data.items.map((item: any) => ({
+        artist: item.artists.map((x: { name: any }) => x.name).join(", "),
         title: item.name,
         id: item.id,
       }))
