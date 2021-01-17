@@ -11,8 +11,8 @@ import PlayingInfo from "../../components/PlayingInfo"
 import PlayingControls from "../../components/PlayingControls"
 import { useSelector } from "react-redux"
 
-const Playing = () => {
-  const song = useSelector((state) => state.song)
+const Playing: React.FC = () => {
+  const song = useSelector((state: { song: songState }) => state.song)
   const { artist, title, image, albumName, releaseDate, albumId } = song
 
   return (
@@ -27,7 +27,7 @@ const Playing = () => {
       <View style={styles.container}>
         <SafeAreaView style={styles.safeContainer}>
           <View style={styles.topInfo}>
-            <PlayingInfo artist={artist} title={title} />
+            <PlayingInfo />
           </View>
           <View style={styles.coverContainer}>
             <Image source={{ uri: image }} style={styles.coverArt} />
