@@ -26,7 +26,7 @@ const AlbumItem = ({ title, artist, image, index }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={handlePress}>
       <View style={styles.data}>
-        <Text style={styles.songIndex}>{index}</Text>
+        <Text style={styles.songIndex}>{index < 10 ? `0${index}` : index}</Text>
         <View style={styles.info}>
           <Text style={styles.title} numberOfLines={1}>
             {title}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     height: 50,
     marginVertical: 10,
-    marginHorizontal: 10,
+    marginLeft: 10,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   songIndex: {
     fontSize: 15,
-    width: 20,
+    width: 25,
     color: "rgb(126, 126, 126)",
     fontWeight: "500",
     textAlign: "center",

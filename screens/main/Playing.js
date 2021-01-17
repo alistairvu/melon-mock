@@ -13,7 +13,7 @@ import { useSelector } from "react-redux"
 
 const Playing = () => {
   const song = useSelector((state) => state.song)
-  const { artist, title, image } = song
+  const { artist, title, image, albumName, releaseDate, albumId } = song
 
   return (
     <ImageBackground

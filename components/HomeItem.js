@@ -11,8 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native"
 import { useDispatch } from "react-redux"
-import { clientID, clientSecret } from "../secrets"
-import { Buffer } from "buffer"
+import { getToken } from "../utils"
 
 const HomeItem = (props) => {
   const { link, title, type } = props
@@ -20,25 +19,6 @@ const HomeItem = (props) => {
   const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
   const navigation = useNavigation()
-
-  const getToken = async () => {
-    try {
-      const res = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            clientID + ":" + clientSecret
-          ).toString("base64")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "grant_type=client_credentials",
-      })
-      const data = await res.json()
-      return data["access_token"]
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const getData = async () => {
     const token = await getToken()

@@ -39,6 +39,9 @@ export default function App() {
             options={{
               gestureDirection: "vertical",
               cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+              gestureResponseDistance: {
+                vertical: 500,
+              },
             }}
           />
           <Stack.Screen

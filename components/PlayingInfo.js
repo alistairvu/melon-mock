@@ -2,9 +2,13 @@ import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
+import { useSelector } from "react-redux"
+import OptionsMenu from "react-native-options-menu"
 
-const PlayingInfo = ({ title, artist }) => {
+const PlayingInfo = () => {
   const navigation = useNavigation()
+  const song = useSelector((state) => state.song)
+  const { artist, title, image, albumName, releaseDate, albumId } = song
 
   return (
     <View style={{ flex: 1, flexDirection: "row" }}>
@@ -15,7 +19,23 @@ const PlayingInfo = ({ title, artist }) => {
           justifyContent: "center",
         }}
       >
-        <MaterialIcons name="more-vert" size={30} color="white" />
+        <OptionsMenu
+          customButton={
+            <MaterialIcons name="more-vert" size={30} color="white" />
+          }
+          options={["Go to Album", "Cancel"]}
+          actions={[
+            () =>
+              navigation.navigate("Collection", {
+                image,
+                artist,
+                albumName,
+                releaseDate,
+                albumId,
+              }),
+            () => {},
+          ]}
+        />
       </View>
       <View style={styles.playingInfo}>
         <Text style={styles.title} numberOfLines={1}>

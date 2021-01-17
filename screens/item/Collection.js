@@ -13,8 +13,7 @@ import { useNavigation, useRoute } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
 import AlbumItem from "../../components/AlbumItem"
-import { clientID, clientSecret } from "../../secrets"
-import { Buffer } from "buffer"
+import { getToken } from "../../utils"
 
 const Collection = () => {
   const route = useRoute()
@@ -22,29 +21,8 @@ const Collection = () => {
   const navigation = useNavigation()
   const releaseDateDisplay = releaseDate.split("-").reverse().join("/")
 
-  console.log(albumId)
-
   const [loaded, setLoaded] = useState(false)
   const [trackList, setTrackList] = useState([])
-
-  const getToken = async () => {
-    try {
-      const res = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            clientID + ":" + clientSecret
-          ).toString("base64")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "grant_type=client_credentials",
-      })
-      const data = await res.json()
-      return data["access_token"]
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const getTracks = async () => {
     const token = await getToken()
@@ -107,6 +85,10 @@ const Collection = () => {
                   </Text>
                   <Text style={styles.releaseDate} numberOfLines={1}>
                     {releaseDateDisplay}
+                    {loaded &&
+                      ` • ${trackList.length} ${
+                        trackList.length === 1 ? "track" : "tracks"
+                      }`}
                   </Text>
                 </View>
               </View>
@@ -117,10 +99,10 @@ const Collection = () => {
       <View style={styles.trackList}>
         {loaded ? (
           <FlatList
+            showsVerticalScrollIndicator={false}
             data={trackList}
             keyExtractor={(item) => item.id}
             renderItem={({ item, index }) => {
-              console.log(item)
               return (
                 <AlbumItem
                   title={item.title}
@@ -164,7 +146,7 @@ const styles = StyleSheet.create({
   },
   infoContent: {
     flex: 1,
-    marginHorizontal: 20,
+    marginLeft: 20,
   },
   nav: {
     flex: 1,

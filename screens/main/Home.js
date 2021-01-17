@@ -21,6 +21,11 @@ const Home = () => {
         type={"songs"}
       />
       <HomeItem
+        link="37i9dQZF1EpxDXt2xefJcM"
+        title={"Your Top Songs"}
+        type={"songs"}
+      />
+      <HomeItem
         link="37i9dQZEVXbLiRSasKsNU9"
         title={"Burning Up"}
         type={"songs"}

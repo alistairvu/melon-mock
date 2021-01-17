@@ -4,34 +4,13 @@ import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
 import ChartItem from "../../components/SongItem"
 import { StatusBar } from "expo-status-bar"
-import { clientID, clientSecret } from "../../secrets"
-import { Buffer } from "buffer"
+import { getToken } from "../../utils"
 
 const Charts = () => {
   const [date, setDate] = useState(null)
   const [time, setTime] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [songData, setSongData] = useState([])
-
-  const getToken = async () => {
-    try {
-      const res = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            clientID + ":" + clientSecret
-          ).toString("base64")}`,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "grant_type=client_credentials",
-      })
-      const data = await res.json()
-      console.log(data)
-      return data["access_token"]
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const getSongs = async () => {
     const token = await getToken()

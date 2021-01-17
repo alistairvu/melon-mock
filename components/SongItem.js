@@ -24,7 +24,6 @@ const SongItem = ({
   const dispatch = useDispatch()
 
   const handlePress = () => {
-    console.log(image)
     dispatch({
       type: "NEW_SONG",
       payload: {
