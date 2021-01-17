@@ -4,7 +4,7 @@ import { Text } from "react-native-elements"
 import PlayingComponent from "../../components/PlayingComponent"
 import { getToken } from "../../utils"
 
-const Search = () => {
+const Search: React.FC = () => {
   const [term, setTerm] = useState("")
   const [searching, setSearching] = useState(true)
   const [searchData, setSearchData] = useState([])
