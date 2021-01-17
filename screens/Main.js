@@ -10,16 +10,9 @@ import HomeScreen from "./main/Home"
 import LibraryScreen from "./main/Library"
 import SearchScreen from "./main/Search"
 import PlayScreen from "./main/Playing"
+import PlayingComponent from "../components/PlayingComponent"
 
 const Tab = createBottomTabNavigator()
-
-const EmptyComponent = () => {
-  return (
-    <View>
-      <StatusBar style="light" />
-    </View>
-  )
-}
 
 export default function Main() {
   return (
@@ -51,21 +44,6 @@ export default function Main() {
                 size={35}
                 color={color}
               />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="Play"
-          component={EmptyComponent}
-          listeners={({ navigation }) => ({
-            tabPress: (event) => {
-              event.preventDefault()
-              navigation.navigate("Playing")
-            },
-          })}
-          options={{
-            tabBarIcon: ({ color, size }) => (
-              <MaterialIcons name="play-circle-fill" size={35} color={color} />
             ),
           }}
         />

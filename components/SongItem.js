@@ -35,7 +35,6 @@ const SongItem = ({
         albumId,
       },
     })
-    navigation.navigate("Playing")
   }
 
   return (

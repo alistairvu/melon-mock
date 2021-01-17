@@ -28,7 +28,7 @@ const Collection = () => {
     const token = await getToken()
     try {
       const res = await fetch(
-        `https://api.spotify.com/v1/albums/${albumId}/tracks?market=VI`,
+        `https://api.spotify.com/v1/albums/${albumId}/tracks?market=VN`,
         {
           method: "GET",
           headers: {

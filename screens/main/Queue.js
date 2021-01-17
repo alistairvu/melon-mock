@@ -34,7 +34,7 @@ const Queue = () => {
               name="close"
               size={30}
               color="white"
-              onPress={() => navigation.navigate("Playing")}
+              onPress={() => navigation.pop()}
             />
           </View>
           <View style={styles.content}></View>

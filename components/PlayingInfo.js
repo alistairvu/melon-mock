@@ -57,7 +57,7 @@ const PlayingInfo = () => {
           name="keyboard-arrow-down"
           size={40}
           color="white"
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.pop()}
         />
       </View>
     </View>

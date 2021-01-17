@@ -4,8 +4,11 @@ import {
   StyleSheet,
   TextInput,
   ActivityIndicator,
+  View,
 } from "react-native"
 import { Text } from "react-native-elements"
+import PlayingComponent from "../../components/PlayingComponent"
+import { getToken } from "../../utils"
 
 const Search = () => {
   const [term, setTerm] = useState("")
@@ -13,21 +16,25 @@ const Search = () => {
   const [searchData, setSearchData] = useState([])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.heading}>Search</Text>
-      <TextInput
-        style={styles.input}
-        value={term}
-        onChangeText={(term) => setTerm(term)}
-        placeholder="Enter your query"
-        autoCorrect={false}
-      />
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.heading}>Search</Text>
+        <TextInput
+          style={styles.input}
+          value={term}
+          onChangeText={(term) => setTerm(term)}
+          placeholder="Enter your query"
+          autoCorrect={false}
+        />
+      </SafeAreaView>
+      <PlayingComponent />
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     marginHorizontal: 10,
     marginTop: 60,
   },

@@ -28,7 +28,6 @@ const AlbumItem = ({
       type: "NEW_SONG",
       payload: { artist, title, image, releaseDate, albumName, albumId },
     })
-    navigation.navigate("Playing")
   }
 
   return (

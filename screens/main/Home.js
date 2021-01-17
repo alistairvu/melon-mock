@@ -4,43 +4,47 @@ import { Text } from "react-native-elements"
 import { MaterialIcons } from "@expo/vector-icons"
 import HomeItem from "../../components/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
+import PlayingComponent from "../../components/PlayingComponent"
 
 const Home = () => {
   return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <View style={styles.header}>
-        <Image
-          style={styles.image}
-          source={require("../../assets/melon-full-transparent.png")}
+    <View style={{ flex: 1 }}>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <Image
+            style={styles.image}
+            source={require("../../assets/melon-full-transparent.png")}
+          />
+          <MaterialIcons name="settings" size={30} color="black" />
+        </View>
+        <HomeItem
+          link="37i9dQZF1DXcBWIGoYBM5M"
+          title={"Today's Top Hits"}
+          type={"songs"}
         />
-        <MaterialIcons name="settings" size={30} color="black" />
-      </View>
-      <HomeItem
-        link="37i9dQZF1DXcBWIGoYBM5M"
-        title={"Today's Top Hits"}
-        type={"songs"}
-      />
-      <HomeItem
-        link="37i9dQZF1EpxDXt2xefJcM"
-        title={"Your Top Songs"}
-        type={"songs"}
-      />
-      <HomeItem
-        link="37i9dQZEVXbLiRSasKsNU9"
-        title={"Burning Up"}
-        type={"songs"}
-      />
-      <HomeItem
-        link="37i9dQZF1DX5G3iiHaIzdf"
-        title={"New Releases"}
-        type={"songs"}
-      />
-      <HomeItem
-        link="6kbzPEHj3uMPRFsR3v6xzE"
-        title={"Melon Daily"}
-        type={"songs"}
-      />
-    </ScrollView>
+        <HomeItem
+          link="37i9dQZF1EpxDXt2xefJcM"
+          title={"Your Top Songs"}
+          type={"songs"}
+        />
+        <HomeItem
+          link="37i9dQZEVXbLiRSasKsNU9"
+          title={"Burning Up"}
+          type={"songs"}
+        />
+        <HomeItem
+          link="37i9dQZF1DX5G3iiHaIzdf"
+          title={"New Releases"}
+          type={"songs"}
+        />
+        <HomeItem
+          link="6kbzPEHj3uMPRFsR3v6xzE"
+          title={"Melon Daily"}
+          type={"songs"}
+        />
+      </ScrollView>
+      <PlayingComponent />
+    </View>
   )
 }
 

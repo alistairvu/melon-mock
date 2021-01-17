@@ -5,6 +5,7 @@ import { Text } from "react-native-elements"
 import ChartItem from "../../components/SongItem"
 import { StatusBar } from "expo-status-bar"
 import { getToken } from "../../utils"
+import PlayingComponent from "../../components/PlayingComponent"
 
 const Charts = () => {
   const [date, setDate] = useState(null)
@@ -48,40 +49,46 @@ const Charts = () => {
 
   if (!loaded) {
     return (
-      <SafeAreaView style={styles.loading}>
-        <Text style={styles.loadingHeading}>Top Songs</Text>
-        <View style={styles.loadSpinner}>
-          <ActivityIndicator size="large"></ActivityIndicator>
-        </View>
-      </SafeAreaView>
+      <View style={{ flex: 1 }}>
+        <SafeAreaView style={styles.loading}>
+          <Text style={styles.loadingHeading}>Top Songs</Text>
+          <View style={styles.loadSpinner}>
+            <ActivityIndicator size="large"></ActivityIndicator>
+          </View>
+        </SafeAreaView>
+        <PlayingComponent />
+      </View>
     )
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-      <Text style={styles.heading}>Top Songs</Text>
-      <FlatList
-        data={songData}
-        renderItem={({ item }) => {
-          const { track } = item
-          const { album, artists, name } = track
-          return (
-            <ChartItem
-              title={name}
-              artist={artists.map((x) => x.name).join(", ")}
-              image={album.images[0].url}
-              albumName={album.name}
-              releaseDate={album["release_date"]}
-              albumId={album.id}
-            />
-          )
-        }}
-        ListHeaderComponent={<Text style={styles.chartTitle}>{date}</Text>}
-        style={styles.chartList}
-        keyExtractor={(item) => item.track.id}
-      />
-    </SafeAreaView>
+    <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar style="dark" />
+        <Text style={styles.heading}>Top Songs</Text>
+        <FlatList
+          data={songData}
+          renderItem={({ item }) => {
+            const { track } = item
+            const { album, artists, name } = track
+            return (
+              <ChartItem
+                title={name}
+                artist={artists.map((x) => x.name).join(", ")}
+                image={album.images[0].url}
+                albumName={album.name}
+                releaseDate={album["release_date"]}
+                albumId={album.id}
+              />
+            )
+          }}
+          ListHeaderComponent={<Text style={styles.chartTitle}>{date}</Text>}
+          style={styles.chartList}
+          keyExtractor={(item) => item.track.id}
+        />
+      </SafeAreaView>
+      <PlayingComponent />
+    </View>
   )
 }
 

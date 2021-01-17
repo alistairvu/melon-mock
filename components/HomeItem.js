@@ -73,7 +73,6 @@ const HomeItem = (props) => {
                         albumId: album.id,
                       },
                     })
-                    navigation.navigate("Playing")
                   } else {
                     navigation.navigate("Collection", {
                       artist: artists.map((x) => x.name).join(", "),
@@ -113,8 +112,9 @@ const styles = StyleSheet.create({
   title: { fontSize: 30, fontWeight: "700", marginBottom: 15, marginLeft: 10 },
   songContainer: {
     width: 160,
-    marginRight: 5,
     marginLeft: 5,
+    marginRight: 5,
+    alignItems: "center",
   },
   image: {
     height: 150,
