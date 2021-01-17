@@ -8,9 +8,9 @@ import { getToken } from "../../utils"
 import PlayingComponent from "../../components/PlayingComponent"
 
 const Charts = () => {
-  const [date, setDate] = useState(null)
-  const [loaded, setLoaded] = useState(false)
-  const [songData, setSongData] = useState([])
+  const [date, setDate] = useState<string | null>(null)
+  const [loaded, setLoaded] = useState<boolean>(false)
+  const [songData, setSongData] = useState<Array<any>>([])
 
   const getSongs = async () => {
     const token = await getToken()
@@ -74,7 +74,7 @@ const Charts = () => {
             return (
               <ChartItem
                 title={name}
-                artist={artists.map((x) => x.name).join(", ")}
+                artist={artists.map((x: { name: any }) => x.name).join(", ")}
                 image={album.images[0].url}
                 albumName={album.name}
                 releaseDate={album["release_date"]}
