@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { SafeAreaView, View, Text, StyleSheet } from "react-native"
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
 import { ProgressBar } from "react-native-paper"
+import Slider from "@react-native-community/slider"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigation } from "@react-navigation/native"
 
@@ -51,11 +52,12 @@ const PlayingControls: React.FC = () => {
             onPress={() => dispatch({ type: "FLIP_LOOP" })}
           />
         )}
-        {/* <ProgressBar
-          progress={0.5}
-          color={"rgb(97, 209, 84)"}
+        <Slider
+          value={0.6}
+          minimumTrackTintColor="rgb(97,209,84)"
+          thumbTintColor="rgb(97,209,84)"
           style={{ width: 300 }}
-        /> */}
+        />
         <MaterialIcons
           name="shuffle"
           size={24}
