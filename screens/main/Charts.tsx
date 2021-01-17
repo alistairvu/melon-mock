@@ -7,7 +7,7 @@ import { StatusBar } from "expo-status-bar"
 import { getToken } from "../../utils"
 import PlayingComponent from "../../components/PlayingComponent"
 
-const Charts = () => {
+const Charts: React.FC = () => {
   const [date, setDate] = useState<string | null>(null)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [songData, setSongData] = useState<Array<any>>([])
