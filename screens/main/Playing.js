@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   coverArt: {
-    width: 300,
-    height: 300,
+    width: 350,
+    height: 350,
     resizeMode: "stretch",
   },
   controls: {

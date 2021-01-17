@@ -1,13 +1,15 @@
 import React, { useState } from "react"
 import { SafeAreaView, View, Text, StyleSheet } from "react-native"
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
-import { ProgressBar, Colors } from "react-native-paper"
+import { ProgressBar } from "react-native-paper"
 import { useSelector, useDispatch } from "react-redux"
+import { useNavigation } from "@react-navigation/native"
 
 const PlayingControls = () => {
   const [liked, setLiked] = useState(false)
   const { playing, shuffle, loop } = useSelector((state) => state.status)
   const dispatch = useDispatch()
+  const navigation = useNavigation()
 
   return (
     <SafeAreaView style={styles.container}>
@@ -28,10 +30,6 @@ const PlayingControls = () => {
           />
         )}
         <FontAwesome name="instagram" size={24} color="white" />
-      </View>
-      <View style={styles.lyricsContainer}>
-        <Text style={styles.lyricsTextCurrent}>Red lights stop signs</Text>
-        <Text style={styles.lyricsTextNext}>I still see your face</Text>
       </View>
       <View style={styles.progressContainer}>
         {loop === 2 ? (
@@ -66,7 +64,12 @@ const PlayingControls = () => {
       </View>
       <View style={styles.controlsContainer}>
         <View style={{ flex: 1 }}>
-          <MaterialIcons name="playlist-play" size={30} color="white" />
+          <MaterialIcons
+            name="playlist-play"
+            size={30}
+            color="white"
+            onPress={() => navigation.navigate("Queue")}
+          />
         </View>
         <View
           style={{
@@ -124,23 +127,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  lyricsContainer: {
-    flex: 5,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  lyricsTextCurrent: {
-    color: "rgb(97, 209, 84)",
-    fontSize: 20,
-    textAlign: "center",
-  },
-  lyricsTextNext: {
-    color: "white",
-    fontSize: 20,
-    textAlign: "center",
-  },
+
   progressContainer: {
-    flex: 1,
+    flex: 6,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

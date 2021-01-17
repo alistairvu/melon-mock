@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { NavigationContainer } from "@react-navigation/native"
 import { MaterialIcons } from "@expo/vector-icons"
-import { createStackNavigator } from "@react-navigation/stack"
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack"
 import { View, StyleSheet } from "react-native"
 import { Provider } from "react-redux"
 import store from "./redux/store"
@@ -9,6 +12,8 @@ import store from "./redux/store"
 import Main from "./screens/Main"
 import SplashScreen from "./screens/Splash"
 import Playing from "./screens/main/Playing"
+import Queue from "./screens/main/Queue"
+import Collection from "./screens/item/Collection"
 
 const Stack = createStackNavigator()
 
@@ -26,13 +31,22 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator headerMode={false} mode={"modal"}>
+        <Stack.Navigator headerMode={false}>
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen
             name="Playing"
             component={Playing}
-            options={{ gestureDirection: "vertical" }}
+            options={{
+              gestureDirection: "vertical",
+              cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
+            }}
           />
+          <Stack.Screen
+            name="Queue"
+            component={Queue}
+            options={{ animationEnabled: false }}
+          />
+          <Stack.Screen name="Collection" component={Collection} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

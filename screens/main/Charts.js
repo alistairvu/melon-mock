@@ -13,7 +13,7 @@ const Charts = () => {
   const [songData, setSongData] = useState([])
 
   const urlChart =
-    "https://rss.itunes.apple.com/api/v1/vn/itunes-music/top-songs/all/100/explicit.json"
+    "https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/100/explicit.json"
 
   const getSongs = async () => {
     try {
