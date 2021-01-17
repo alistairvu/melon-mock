@@ -1,8 +1,10 @@
 const initialState = {
   artist: "Olivia Rodrigo",
   title: "drivers license",
-  image:
-    "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/9d/56/72/9d56724b-501d-83e9-a53a-e0bf1ebb83a1/20UM1IM14285.rgb.jpg/200x200bb.png",
+  image: "https://i.scdn.co/image/ab67616d0000b27359779689e1d9c15ca2f76b84",
+  albumName: "drivers license",
+  releaseDate: "2021-01-08",
+  albumId: "66FPnVL9G4CMKy3wvaGTcr",
 }
 
 const songReducer = (state = initialState, action) => {

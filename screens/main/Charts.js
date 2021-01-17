@@ -1,10 +1,11 @@
-import axios from "axios"
 import React, { useState, useEffect } from "react"
 import { ActivityIndicator, FlatList } from "react-native"
 import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
 import ChartItem from "../../components/SongItem"
 import { StatusBar } from "expo-status-bar"
+import { clientID, clientSecret } from "../../secrets"
+import { Buffer } from "buffer"
 
 const Charts = () => {
   const [date, setDate] = useState(null)
@@ -12,15 +13,42 @@ const Charts = () => {
   const [loaded, setLoaded] = useState(false)
   const [songData, setSongData] = useState([])
 
-  const urlChart =
-    "https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/100/explicit.json"
+  const getToken = async () => {
+    try {
+      const res = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            clientID + ":" + clientSecret
+          ).toString("base64")}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "grant_type=client_credentials",
+      })
+      const data = await res.json()
+      console.log(data)
+      return data["access_token"]
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const getSongs = async () => {
+    const token = await getToken()
     try {
-      setLoaded(false)
-      const res = await axios.get(urlChart)
-      const data = await res.data
-      setSongData(data.feed.results)
+      const res = await fetch(
+        "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?market=VI&fields=items(track(album(images%2Cname%2Crelease_date)%252Cartists(name)%252Cname%252Cid))",
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      const data = await res.json()
+      setSongData(data.items)
       setLoaded(true)
     } catch (error) {
       console.log(error)
@@ -64,9 +92,17 @@ const Charts = () => {
       <FlatList
         data={songData}
         renderItem={({ item }) => {
-          const { artistName, name, artworkUrl100 } = item
+          const { track } = item
+          const { album, artists, name } = track
           return (
-            <ChartItem artist={artistName} title={name} image={artworkUrl100} />
+            <ChartItem
+              title={name}
+              artist={artists.map((x) => x.name).join(", ")}
+              image={album.images[0].url}
+              albumName={album.name}
+              releaseDate={album["release_date"]}
+              albumId={album.id}
+            />
           )
         }}
         ListHeaderComponent={
@@ -75,7 +111,7 @@ const Charts = () => {
           </Text>
         }
         style={styles.chartList}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.track.id}
       />
     </SafeAreaView>
   )

@@ -10,15 +10,31 @@ import {
 import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { useDispatch } from "react-redux"
+import OptionsMenu from "react-native-options-menu"
 
-const SongItem = ({ title, artist, image }) => {
+const SongItem = ({
+  title,
+  artist,
+  image,
+  albumName,
+  releaseDate,
+  albumId,
+}) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
   const handlePress = () => {
+    console.log(image)
     dispatch({
       type: "NEW_SONG",
-      payload: { artist, title, image },
+      payload: {
+        artist,
+        title,
+        image,
+        albumName,
+        releaseDate,
+        albumId,
+      },
     })
     navigation.navigate("Playing")
   }
@@ -37,7 +53,23 @@ const SongItem = ({ title, artist, image }) => {
         </View>
       </View>
       <View style={styles.buttons}>
-        <MaterialIcons name="more-vert" size={30} color="black" />
+        <OptionsMenu
+          customButton={
+            <MaterialIcons name="more-vert" size={30} color="black" />
+          }
+          options={["Go to Album", "Cancel"]}
+          actions={[
+            () =>
+              navigation.navigate("Collection", {
+                image,
+                artist,
+                albumName,
+                releaseDate,
+                albumId,
+              }),
+            () => {},
+          ]}
+        />
       </View>
     </TouchableOpacity>
   )

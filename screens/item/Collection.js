@@ -6,42 +6,70 @@ import {
   FlatList,
   ImageBackground,
   Image,
+  ActivityIndicator,
 } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
 import AlbumItem from "../../components/AlbumItem"
-import axios from "axios"
+import { clientID, clientSecret } from "../../secrets"
+import { Buffer } from "buffer"
 
 const Collection = () => {
   const route = useRoute()
-  const { artist, title, image, releaseDate } = route.params
+  const { artist, albumName, image, releaseDate, albumId } = route.params
   const navigation = useNavigation()
   const releaseDateDisplay = releaseDate.split("-").reverse().join("/")
+
+  console.log(albumId)
 
   const [loaded, setLoaded] = useState(false)
   const [trackList, setTrackList] = useState([])
 
-  const getTracks = async () => {
+  const getToken = async () => {
     try {
-      const link = `https://www.theaudiodb.com/api/v1/json/1/searchalbum.php?a=${
-        title === "folklore (deluxe edition)" ? "folklore" : title
-      }&s=${artist}`
-      const albumRes = await axios.get(link)
-      const albumId = await albumRes.data.album[0].idAlbum
-      const trackRes = await axios.get(
-        `https://theaudiodb.com/api/v1/json/1/track.php?m=${albumId}`
+      const res = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            clientID + ":" + clientSecret
+          ).toString("base64")}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: "grant_type=client_credentials",
+      })
+      const data = await res.json()
+      return data["access_token"]
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const getTracks = async () => {
+    const token = await getToken()
+    try {
+      const res = await fetch(
+        `https://api.spotify.com/v1/albums/${albumId}/tracks?market=VI`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
-      const trackData = await trackRes.data.track.map((x) => ({
-        artist: x.strArtist,
-        title: x.strTrack,
-        id: x.idTrack,
+      const data = await res.json()
+      const trackData = data.items.map((item) => ({
+        artist: item.artists.map((x) => x.name).join(", "),
+        title: item.name,
+        id: item.id,
       }))
       setTrackList(trackData)
       setLoaded(true)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -72,7 +100,7 @@ const Collection = () => {
                 <Image source={{ uri: image }} style={styles.coverArt} />
                 <View style={styles.textContent}>
                   <Text style={styles.title} numberOfLines={1}>
-                    {title}
+                    {albumName}
                   </Text>
                   <Text style={styles.artist} numberOfLines={1}>
                     {artist}
@@ -87,21 +115,32 @@ const Collection = () => {
         </ImageBackground>
       </View>
       <View style={styles.trackList}>
-        <FlatList
-          data={trackList}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item, index }) => {
-            console.log(item)
-            return (
-              <AlbumItem
-                title={item.title}
-                image={image}
-                index={index + 1}
-                artist={item.artist}
-              />
-            )
-          }}
-        />
+        {loaded ? (
+          <FlatList
+            data={trackList}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => {
+              console.log(item)
+              return (
+                <AlbumItem
+                  title={item.title}
+                  image={image}
+                  index={index + 1}
+                  artist={item.artist}
+                  albumId={albumId}
+                  releaseDate={releaseDate}
+                  albumName={albumName}
+                />
+              )
+            }}
+          />
+        ) : (
+          <View
+            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+          >
+            <ActivityIndicator size="large"></ActivityIndicator>
+          </View>
+        )}
       </View>
     </View>
   )

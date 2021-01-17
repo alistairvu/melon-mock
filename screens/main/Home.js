@@ -16,29 +16,24 @@ const Home = () => {
         <MaterialIcons name="settings" size={30} color="black" />
       </View>
       <HomeItem
-        link="https://rss.itunes.apple.com/api/v1/us/itunes-music/hot-tracks/all/5/explicit.json"
-        title={"Hot Tracks"}
+        link="37i9dQZF1DXcBWIGoYBM5M"
+        title={"Today's Top Hits"}
         type={"songs"}
       />
       <HomeItem
-        link="https://rss.itunes.apple.com/api/v1/us/itunes-music/top-songs/all/5/explicit.json"
-        title={"Top Songs"}
+        link="37i9dQZEVXbLiRSasKsNU9"
+        title={"Burning Up"}
         type={"songs"}
       />
       <HomeItem
-        link="https://rss.itunes.apple.com/api/v1/us/itunes-music/new-music/all/5/explicit.json"
-        title={"New Music"}
-        type={"collection"}
+        link="37i9dQZF1DX5G3iiHaIzdf"
+        title={"New Releases"}
+        type={"songs"}
       />
       <HomeItem
-        link="https://rss.itunes.apple.com/api/v1/us/itunes-music/top-albums/all/5/explicit.json"
-        title={"Top Albums"}
-        type={"collection"}
-      />
-      <HomeItem
-        link="https://rss.itunes.apple.com/api/v1/us/itunes-music/recent-releases/all/5/explicit.json"
-        title={"Recent Releases"}
-        type={"collection"}
+        link="6kbzPEHj3uMPRFsR3v6xzE"
+        title={"Melon Daily"}
+        type={"songs"}
       />
     </ScrollView>
   )
