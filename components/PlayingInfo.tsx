@@ -5,7 +5,7 @@ import { useNavigation } from "@react-navigation/native"
 import { useSelector } from "react-redux"
 import OptionsMenu from "react-native-options-menu"
 
-const PlayingInfo = () => {
+const PlayingInfo: React.FC = () => {
   const navigation = useNavigation()
   const song = useSelector((state: { song: songState }) => state.song)
   const { artist, title, image, albumName, releaseDate, albumId } = song

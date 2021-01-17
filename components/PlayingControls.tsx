@@ -5,7 +5,7 @@ import { ProgressBar } from "react-native-paper"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigation } from "@react-navigation/native"
 
-const PlayingControls = () => {
+const PlayingControls: React.FC = () => {
   const [liked, setLiked] = useState<boolean>(false)
   const { playing, shuffle, loop } = useSelector(
     (state: { status: statusState }) => state.status

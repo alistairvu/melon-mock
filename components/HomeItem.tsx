@@ -13,9 +13,15 @@ import {
 import { useDispatch } from "react-redux"
 import { getToken } from "../utils"
 
-const HomeItem = (props) => {
+interface Props {
+  link: string
+  title: string
+  type: string
+}
+
+const HomeItem: React.FC<Props> = (props) => {
   const { link, title, type } = props
-  const [data, setData] = useState([])
+  const [data, setData] = useState<Array<any>>([])
   const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
   const navigation = useNavigation()
@@ -65,7 +71,9 @@ const HomeItem = (props) => {
                     dispatch({
                       type: "NEW_SONG",
                       payload: {
-                        artist: artists.map((x) => x.name).join(", "),
+                        artist: artists
+                          .map((x: { name: string }) => x.name)
+                          .join(", "),
                         title: name,
                         image: album.images[0].url,
                         albumName: album.name,
@@ -79,7 +87,9 @@ const HomeItem = (props) => {
                     })
                   } else {
                     navigation.navigate("Collection", {
-                      artist: artists.map((x) => x.name).join(", "),
+                      artist: artists
+                        .map((x: { name: string }) => x.name)
+                        .join(", "),
                       title: name,
                       image: album.images[0].url,
                     })
@@ -94,7 +104,7 @@ const HomeItem = (props) => {
                   {name}
                 </Text>
                 <Text numberOfLines={1}>
-                  {artists.map((x) => x.name).join(", ")}
+                  {artists.map((x: { name: string }) => x.name).join(", ")}
                 </Text>
               </TouchableOpacity>
             )
