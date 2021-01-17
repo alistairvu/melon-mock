@@ -7,17 +7,21 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  ImageProps,
 } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import { StatusBar } from "expo-status-bar"
 import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
+import { rootState } from "../../redux/reducers"
 
 const Queue = () => {
-  const image = useSelector(({ song: songState }) => song.image)
+  const image = useSelector((state: rootState) => state.song.image)
   const dispatch = useDispatch()
   const navigation = useNavigation()
-  const { playing, shuffle, loop } = useSelector((state) => state.status)
+  const { playing, shuffle, loop } = useSelector(
+    (state: rootState) => state.status
+  )
 
   return (
     <ImageBackground
@@ -34,7 +38,7 @@ const Queue = () => {
               name="close"
               size={30}
               color="white"
-              onPress={() => navigation.pop()}
+              onPress={() => navigation.goBack()}
             />
           </View>
           <View style={styles.content}></View>
