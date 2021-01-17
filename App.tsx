@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { NavigationContainer } from "@react-navigation/native"
-import { MaterialIcons } from "@expo/vector-icons"
 import {
   createStackNavigator,
   CardStyleInterpolators,
 } from "@react-navigation/stack"
-import { View, StyleSheet } from "react-native"
+import { StyleSheet } from "react-native"
 import { Provider } from "react-redux"
 import store from "./redux/store"
 
@@ -31,7 +30,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator headerMode={false}>
+        <Stack.Navigator headerMode={"none"}>
           <Stack.Screen name="Main" component={Main} />
           <Stack.Screen
             name="Playing"
