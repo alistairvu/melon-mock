@@ -10,6 +10,14 @@ interface songState {
   albumId: string | null
 }
 
+interface albumData {
+  artist: string | null
+  image: string | null
+  albumName: string | null
+  releaseDate: string | null
+  albumId: string | null
+}
+
 interface statusState {
   playing: boolean
   shuffle: boolean

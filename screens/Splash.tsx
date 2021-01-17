@@ -1,7 +1,7 @@
 import React from "react"
 import { View, Image, StyleSheet } from "react-native"
 
-const Splash = () => {
+const Splash: React.FC = () => {
   return (
     <View style={styles.container}>
       <Image source={require("../assets/melon-logo.png")} />
