@@ -8,7 +8,6 @@ import { getToken } from "../../utils"
 
 const Charts = () => {
   const [date, setDate] = useState(null)
-  const [time, setTime] = useState(null)
   const [loaded, setLoaded] = useState(false)
   const [songData, setSongData] = useState([])
 
@@ -43,13 +42,7 @@ const Charts = () => {
         year: "numeric",
       })
     )
-    setTime(
-      today.toLocaleString("en-AU", {
-        hour: "2-digit",
-        hour12: false,
-        minute: "2-digit",
-      })
-    )
+
     getSongs()
   }, [])
 
@@ -84,11 +77,7 @@ const Charts = () => {
             />
           )
         }}
-        ListHeaderComponent={
-          <Text style={styles.chartTitle}>
-            {date} - {time}
-          </Text>
-        }
+        ListHeaderComponent={<Text style={styles.chartTitle}>{date}</Text>}
         style={styles.chartList}
         keyExtractor={(item) => item.track.id}
       />

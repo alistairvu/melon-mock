@@ -11,14 +11,22 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { useDispatch } from "react-redux"
 
-const AlbumItem = ({ title, artist, image, index }) => {
+const AlbumItem = ({
+  title,
+  artist,
+  image,
+  index,
+  releaseDate,
+  albumName,
+  albumId,
+}) => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
 
   const handlePress = () => {
     dispatch({
       type: "NEW_SONG",
-      payload: { artist, title, image },
+      payload: { artist, title, image, releaseDate, albumName, albumId },
     })
     navigation.navigate("Playing")
   }
