@@ -16,7 +16,7 @@ const Charts = () => {
     const token = await getToken()
     try {
       const res = await fetch(
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF/tracks?market=VI&fields=items(track(album(images%2Cname%2Crelease_date)%252Cartists(name)%252Cname%252Cid))",
+        "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date)%252Cartists(name)%252Cname%252Cid))",
         {
           method: "GET",
           headers: {
