@@ -1,13 +1,17 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
-import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
+import { MaterialIcons } from "@expo/vector-icons"
 import { useDispatch, useSelector } from "react-redux"
 
-const PlayingComponent = () => {
+const PlayingComponent: React.FC = () => {
   const navigation = useNavigation()
-  const { artist, title } = useSelector((state) => state.song)
-  const { playing } = useSelector((state) => state.status)
+  const { artist, title } = useSelector(
+    (state: { song: songState }) => state.song
+  )
+  const { playing } = useSelector(
+    (state: { status: { playing: boolean } }) => state.status
+  )
   const dispatch = useDispatch()
 
   if (artist === null) {

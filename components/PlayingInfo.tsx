@@ -7,7 +7,7 @@ import OptionsMenu from "react-native-options-menu"
 
 const PlayingInfo = () => {
   const navigation = useNavigation()
-  const song = useSelector((state) => state.song)
+  const song = useSelector((state: { song: songState }) => state.song)
   const { artist, title, image, albumName, releaseDate, albumId } = song
 
   return (
@@ -57,7 +57,7 @@ const PlayingInfo = () => {
           name="keyboard-arrow-down"
           size={40}
           color="white"
-          onPress={() => navigation.pop()}
+          onPress={() => navigation.goBack()}
         />
       </View>
     </View>

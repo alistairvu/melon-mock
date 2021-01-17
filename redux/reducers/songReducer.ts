@@ -1,12 +1,3 @@
-interface songState {
-  artist: string | null
-  title: string | null
-  image: string | null
-  albumName: string | null
-  releaseDate: string | null
-  albumId: string | null
-}
-
 interface songAction {
   type: "NEW_SONG"
   payload: songState

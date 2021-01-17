@@ -6,8 +6,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigation } from "@react-navigation/native"
 
 const PlayingControls = () => {
-  const [liked, setLiked] = useState(false)
-  const { playing, shuffle, loop } = useSelector((state) => state.status)
+  const [liked, setLiked] = useState<boolean>(false)
+  const { playing, shuffle, loop } = useSelector(
+    (state: { status: statusState }) => state.status
+  )
   const dispatch = useDispatch()
   const navigation = useNavigation()
 
@@ -49,11 +51,11 @@ const PlayingControls = () => {
             onPress={() => dispatch({ type: "FLIP_LOOP" })}
           />
         )}
-        <ProgressBar
+        {/* <ProgressBar
           progress={0.5}
           color={"rgb(97, 209, 84)"}
           style={{ width: 300 }}
-        />
+        /> */}
         <MaterialIcons
           name="shuffle"
           size={24}

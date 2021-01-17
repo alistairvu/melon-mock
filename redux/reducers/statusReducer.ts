@@ -1,9 +1,3 @@
-interface statusState {
-  playing: boolean
-  shuffle: boolean
-  loop: 0 | 1 | 2
-}
-
 interface statusAction {
   type: "SET_PLAY" | "FLIP_PLAY" | "FLIP_SHUFFLE" | "FLIP_LOOP"
   payload?: boolean
