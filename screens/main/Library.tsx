@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from "react-native"
 import { Text } from "react-native-elements"
 import PlayingComponent from "../../components/PlayingComponent"
 
-const Library = () => {
+const Library: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
