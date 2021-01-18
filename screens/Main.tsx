@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { NavigationContainer } from "@react-navigation/native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { View, StyleSheet } from "react-native"
 import { StatusBar } from "expo-status-bar"
@@ -9,8 +8,6 @@ import ChartScreen from "./main/Charts"
 import HomeScreen from "./main/Home"
 import LibraryScreen from "./main/Library"
 import SearchScreen from "./main/Search"
-import PlayScreen from "./main/Playing"
-import PlayingComponent from "../components/playing/PlayingComponent"
 
 const Tab = createBottomTabNavigator()
 
