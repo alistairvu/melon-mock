@@ -30,7 +30,7 @@ const HomeItem: React.FC<Props> = (props) => {
     const token = await getToken()
     try {
       const res = await fetch(
-        `https://api.spotify.com/v1/playlists/${link}/tracks?market=VI&fields=items(track(album(images%2Cname%2Crelease_date)%252Cartists(name)%252Cname%252Cid))&limit=8`,
+        `https://api.spotify.com/v1/playlists/${link}/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date%2Cartists)%252Cartists(name)%252Cname%252Cid))&limit=8`,
         {
           method: "GET",
           headers: {
