@@ -5,7 +5,7 @@ import HomeItem from "../../components/items/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
 import PlayingComponent from "../../components/playing/PlayingComponent"
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>

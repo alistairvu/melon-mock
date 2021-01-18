@@ -15,7 +15,7 @@ import { SafeAreaView } from "react-native-safe-area-context"
 import AlbumItem from "../../components/items/AlbumItem"
 import { getToken } from "../../utils"
 
-const Collection = () => {
+const Collection: React.FC = () => {
   const route: RouteProp<
     { params: { [key: string]: string } },
     "params"

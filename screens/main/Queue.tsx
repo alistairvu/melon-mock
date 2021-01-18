@@ -15,7 +15,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation } from "@react-navigation/native"
 import { rootState } from "../../redux/reducers"
 
-const Queue = () => {
+const Queue: React.FC = () => {
   const image = useSelector((state: rootState) => state.song.image)
   const dispatch = useDispatch()
   const navigation = useNavigation()

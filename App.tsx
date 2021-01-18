@@ -16,7 +16,7 @@ import Collection from "./screens/item/Collection"
 
 const Stack = createStackNavigator()
 
-export default function App() {
+const App: React.FC = () => {
   const [loaded, setLoaded] = useState(false)
 
   useEffect(() => {
@@ -60,3 +60,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 })
+
+export default App

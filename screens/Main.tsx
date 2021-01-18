@@ -11,7 +11,7 @@ import SearchScreen from "./main/Search"
 
 const Tab = createBottomTabNavigator()
 
-export default function Main() {
+const Main: React.FC = () => {
   return (
     <View style={styles.container}>
       <StatusBar style="dark" />
@@ -73,3 +73,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
 })
+
+export default Main
