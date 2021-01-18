@@ -1,14 +1,13 @@
 import React, { useState } from "react"
 import { SafeAreaView, View, Text, StyleSheet } from "react-native"
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons"
-import { ProgressBar } from "react-native-paper"
-import Slider from "@react-native-community/slider"
+import Scrubber from "react-native-scrubber"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigation } from "@react-navigation/native"
 
 const PlayingControls: React.FC = () => {
   const [liked, setLiked] = useState<boolean>(false)
-  const { playing, shuffle, loop } = useSelector(
+  const { playing, shuffle, loop, playValue } = useSelector(
     (state: { status: statusState }) => state.status
   )
   const dispatch = useDispatch()
@@ -52,12 +51,18 @@ const PlayingControls: React.FC = () => {
             onPress={() => dispatch({ type: "FLIP_LOOP" })}
           />
         )}
-        <Slider
-          value={0.6}
-          minimumTrackTintColor="rgb(97,209,84)"
-          thumbTintColor="rgb(97,209,84)"
-          style={{ width: 300 }}
-        />
+        <View style={{ width: 300 }}>
+          <Scrubber
+            value={playValue}
+            totalDuration={197}
+            trackColor="rgb(97, 209, 84)"
+            scrubbedColor="rgb(97,209,84)"
+            onSlidingComplete={(newVal) =>
+              dispatch({ type: "SET_PLAY_VAL", payload: newVal })
+            }
+          />
+        </View>
+
         <MaterialIcons
           name="shuffle"
           size={24}

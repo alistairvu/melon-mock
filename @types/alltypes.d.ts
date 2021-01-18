@@ -22,6 +22,7 @@ interface statusState {
   playing: boolean
   shuffle: boolean
   loop: 0 | 1 | 2
+  playValue: number
 }
 
 interface rootState {

@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   coverArt: {
     width: 350,
     height: 350,
+    borderRadius: 175,
     resizeMode: "stretch",
   },
   controls: {
