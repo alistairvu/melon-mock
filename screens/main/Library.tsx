@@ -1,31 +1,40 @@
 import React from "react"
-import { SafeAreaView, StyleSheet, View } from "react-native"
-import { Text } from "react-native-elements"
-import PlayingComponent from "../../components/PlayingComponent"
+import { createStackNavigator } from "@react-navigation/stack"
+import { StyleSheet } from "react-native"
+
+import LibraryScreen from "../library/LibraryHome"
+import SongScreen from "../library/LibrarySongs"
+
+const Stack = createStackNavigator()
 
 const Library: React.FC = () => {
   return (
-    <View style={{ flex: 1 }}>
-      <SafeAreaView style={styles.container}>
-        <Text h1 style={styles.heading}>
-          Library
-        </Text>
-      </SafeAreaView>
-      <PlayingComponent />
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Library"
+        component={LibraryScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Songs"
+        component={SongScreen}
+        options={{
+          headerTintColor: styles.headerStyles.color,
+          headerTitleStyle: styles.screenNameStyle,
+        }}
+      />
+    </Stack.Navigator>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginHorizontal: 10,
-    marginTop: 60,
+  headerStyles: {
+    color: "rgb(97, 209, 84)",
   },
-  heading: {
-    fontSize: 40,
-    fontWeight: "700",
-    marginBottom: 15,
+  screenNameStyle: {
+    color: "black",
   },
 })
 
