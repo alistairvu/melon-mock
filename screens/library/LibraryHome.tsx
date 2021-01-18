@@ -13,8 +13,27 @@ const LibraryHome: React.FC = () => {
         <Text h1 style={styles.heading}>
           Library
         </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Songs")}>
-          <Text>Songs</Text>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Songs")}
+          style={styles.navOpacity}
+        >
+          <Text style={styles.navOpacityText}>Songs</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Albums")}
+          style={styles.navOpacity}
+        >
+          <Text style={styles.navOpacityText}>Albums</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Artists")}
+          style={{
+            ...styles.navOpacity,
+            borderBottomColor: "#babbbd",
+            borderBottomWidth: 1,
+          }}
+        >
+          <Text style={styles.navOpacityText}>Artists</Text>
         </TouchableOpacity>
       </SafeAreaView>
       <PlayingComponent />
@@ -25,13 +44,24 @@ const LibraryHome: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 10,
     marginTop: 60,
   },
   heading: {
     fontSize: 40,
     fontWeight: "700",
     marginBottom: 15,
+    marginHorizontal: 10,
+  },
+  navOpacity: {
+    height: 70,
+    justifyContent: "center",
+    borderTopColor: "#babbbd",
+    borderTopWidth: 1,
+  },
+  navOpacityText: {
+    fontSize: 30,
+    fontWeight: "700",
+    marginLeft: 10,
   },
 })
 

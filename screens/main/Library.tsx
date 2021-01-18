@@ -4,6 +4,8 @@ import { StyleSheet } from "react-native"
 
 import LibraryScreen from "../library/LibraryHome"
 import SongScreen from "../library/LibrarySongs"
+import AlbumScreen from "../library/LibraryAlbums"
+import ArtistScreen from "../library/LibraryArtists"
 
 const Stack = createStackNavigator()
 
@@ -20,6 +22,22 @@ const Library: React.FC = () => {
       <Stack.Screen
         name="Songs"
         component={SongScreen}
+        options={{
+          headerTintColor: styles.headerStyles.color,
+          headerTitleStyle: styles.screenNameStyle,
+        }}
+      />
+      <Stack.Screen
+        name="Albums"
+        component={AlbumScreen}
+        options={{
+          headerTintColor: styles.headerStyles.color,
+          headerTitleStyle: styles.screenNameStyle,
+        }}
+      />
+      <Stack.Screen
+        name="Artists"
+        component={ArtistScreen}
         options={{
           headerTintColor: styles.headerStyles.color,
           headerTitleStyle: styles.screenNameStyle,
