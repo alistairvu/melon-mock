@@ -79,6 +79,9 @@ const HomeItem: React.FC<Props> = (props) => {
                         albumName: album.name,
                         releaseDate: album["release_date"],
                         albumId: album.id,
+                        albumArtist: album.artists
+                          .map((x: { name: any }) => x.name)
+                          .join(", "),
                       },
                     })
                     dispatch({

@@ -5,6 +5,7 @@ interface songAction {
 
 const initialState: songState = {
   artist: null,
+  albumArtist: null,
   title: null,
   image: undefined,
   albumName: null,

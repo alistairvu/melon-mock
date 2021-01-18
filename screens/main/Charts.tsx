@@ -16,7 +16,7 @@ const Charts: React.FC = () => {
     const token = await getToken()
     try {
       const res = await fetch(
-        "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date)%252Cartists(name)%252Cname%252Cid))",
+        "https://api.spotify.com/v1/playlists/37i9dQZEVXbLRQDuF5jeBp/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date%2Cartists)%252Cartists(name)%252Cname%252Cid))",
         {
           method: "GET",
           headers: {
@@ -74,6 +74,9 @@ const Charts: React.FC = () => {
             return (
               <ChartItem
                 title={name}
+                albumArtist={album.artists
+                  .map((x: { name: any }) => x.name)
+                  .join(", ")}
                 artist={artists.map((x: { name: any }) => x.name).join(", ")}
                 image={album.images[0].url}
                 albumName={album.name}

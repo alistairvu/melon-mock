@@ -15,6 +15,7 @@ import OptionsMenu from "react-native-options-menu"
 interface Props {
   title: string
   artist: string
+  albumArtist?: string
   image: string
   albumName: string
   releaseDate: string
@@ -24,6 +25,7 @@ interface Props {
 const SongItem: React.FC<Props> = ({
   title,
   artist,
+  albumArtist,
   image,
   albumName,
   releaseDate,
@@ -37,6 +39,7 @@ const SongItem: React.FC<Props> = ({
       type: "NEW_SONG",
       payload: {
         artist,
+        albumArtist,
         title,
         image,
         albumName,
@@ -77,7 +80,7 @@ const SongItem: React.FC<Props> = ({
             () =>
               navigation.navigate("Collection", {
                 image,
-                artist,
+                artist: albumArtist,
                 albumName,
                 releaseDate,
                 albumId,

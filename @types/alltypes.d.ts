@@ -3,6 +3,7 @@ declare module "../secrets"
 
 interface songState {
   artist: string | null
+  albumArtist?: string | null
   title: string | null
   image: string | undefined
   albumName: string | null

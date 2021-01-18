@@ -84,7 +84,7 @@ const Collection = () => {
                     {albumName}
                   </Text>
                   <Text style={styles.artist} numberOfLines={1}>
-                    {artist.split(",")[0]}
+                    {artist}
                   </Text>
                   <Text style={styles.releaseDate} numberOfLines={1}>
                     {releaseDateDisplay}
@@ -112,6 +112,7 @@ const Collection = () => {
                   image={image}
                   index={index + 1}
                   artist={item.artist}
+                  albumArtist={artist}
                   albumId={albumId}
                   releaseDate={releaseDate}
                   albumName={albumName}

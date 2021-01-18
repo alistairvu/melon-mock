@@ -8,7 +8,16 @@ import OptionsMenu from "react-native-options-menu"
 const PlayingInfo: React.FC = () => {
   const navigation = useNavigation()
   const song = useSelector((state: { song: songState }) => state.song)
-  const { artist, title, image, albumName, releaseDate, albumId } = song
+  const {
+    artist,
+    title,
+    image,
+    albumName,
+    releaseDate,
+    albumId,
+    albumArtist,
+  } = song
+  console.log(albumArtist)
 
   return (
     <View style={{ flex: 1, flexDirection: "row" }}>
@@ -28,7 +37,7 @@ const PlayingInfo: React.FC = () => {
             () =>
               navigation.navigate("Collection", {
                 image,
-                artist,
+                artist: albumArtist,
                 albumName,
                 releaseDate,
                 albumId,

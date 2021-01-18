@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux"
 interface Props {
   title: string
   artist: string
+  albumArtist: string
   image: string
   albumName: string
   releaseDate: string
@@ -25,6 +26,7 @@ const AlbumItem: React.FC<Props> = ({
   artist,
   image,
   index,
+  albumArtist,
   releaseDate,
   albumName,
   albumId,
@@ -34,7 +36,15 @@ const AlbumItem: React.FC<Props> = ({
   const handlePress = () => {
     dispatch({
       type: "NEW_SONG",
-      payload: { artist, title, image, releaseDate, albumName, albumId },
+      payload: {
+        artist,
+        title,
+        image,
+        releaseDate,
+        albumName,
+        albumId,
+        albumArtist,
+      },
     })
     dispatch({
       type: "SET_PLAY",
