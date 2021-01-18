@@ -1,7 +1,7 @@
 import React from "react"
 import { SafeAreaView, StyleSheet, View } from "react-native"
 import { Text } from "react-native-elements"
-import PlayingComponent from "../../components/PlayingComponent"
+import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const LibraryAlbums: React.FC = () => {
   return (

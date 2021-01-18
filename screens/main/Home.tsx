@@ -1,9 +1,9 @@
 import React from "react"
 import { StyleSheet, Image, View } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import HomeItem from "../../components/HomeItem"
+import HomeItem from "../../components/items/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
-import PlayingComponent from "../../components/PlayingComponent"
+import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const Home = () => {
   return (

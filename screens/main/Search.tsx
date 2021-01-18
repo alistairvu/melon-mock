@@ -1,13 +1,17 @@
 import React, { useState } from "react"
 import { SafeAreaView, StyleSheet, TextInput, View } from "react-native"
 import { Text } from "react-native-elements"
-import PlayingComponent from "../../components/PlayingComponent"
+import PlayingComponent from "../../components/playing/PlayingComponent"
 import { getToken } from "../../utils"
 
 const Search: React.FC = () => {
   const [term, setTerm] = useState("")
   const [searching, setSearching] = useState(true)
   const [searchData, setSearchData] = useState([])
+
+  const handleSearch = () => {
+    console.log(term)
+  }
 
   return (
     <View style={{ flex: 1 }}>
@@ -19,6 +23,7 @@ const Search: React.FC = () => {
           onChangeText={(term) => setTerm(term)}
           placeholder="Enter your query"
           autoCorrect={false}
+          onEndEditing={handleSearch}
         />
       </SafeAreaView>
       <PlayingComponent />

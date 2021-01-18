@@ -11,7 +11,7 @@ import {
   ActivityIndicator,
 } from "react-native"
 import { useDispatch } from "react-redux"
-import { getToken } from "../utils"
+import { getToken } from "../../utils"
 
 interface Props {
   link: string

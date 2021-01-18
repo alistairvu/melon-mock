@@ -12,7 +12,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
-import AlbumItem from "../../components/AlbumItem"
+import AlbumItem from "../../components/items/AlbumItem"
 import { getToken } from "../../utils"
 
 const Collection = () => {

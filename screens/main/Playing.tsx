@@ -7,8 +7,8 @@ import {
   Image,
 } from "react-native"
 import { StatusBar } from "expo-status-bar"
-import PlayingInfo from "../../components/PlayingInfo"
-import PlayingControls from "../../components/PlayingControls"
+import PlayingInfo from "../../components/playing/PlayingInfo"
+import PlayingControls from "../../components/playing/PlayingControls"
 import { useSelector } from "react-redux"
 
 const Playing: React.FC = () => {

@@ -10,7 +10,7 @@ import HomeScreen from "./main/Home"
 import LibraryScreen from "./main/Library"
 import SearchScreen from "./main/Search"
 import PlayScreen from "./main/Playing"
-import PlayingComponent from "../components/PlayingComponent"
+import PlayingComponent from "../components/playing/PlayingComponent"
 
 const Tab = createBottomTabNavigator()
 

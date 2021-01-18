@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react"
 import { ActivityIndicator, FlatList } from "react-native"
 import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
 import { Text } from "react-native-elements"
-import ChartItem from "../../components/SongItem"
+import ChartItem from "../../components/items/SongItem"
 import { StatusBar } from "expo-status-bar"
 import { getToken } from "../../utils"
-import PlayingComponent from "../../components/PlayingComponent"
+import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const Charts: React.FC = () => {
   const [date, setDate] = useState<string | null>(null)

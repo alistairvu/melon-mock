@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native"
 import { Text } from "react-native-elements"
-import PlayingComponent from "../../components/PlayingComponent"
+import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const LibraryHome: React.FC = () => {
   const navigation = useNavigation()
