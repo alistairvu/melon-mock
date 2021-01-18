@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { SafeAreaView, StyleSheet, TextInput, View } from "react-native"
 import { Text } from "react-native-elements"
 import PlayingComponent from "../../components/playing/PlayingComponent"
+import BlankSearch from "../../components/search/BlankSearch"
 import { getToken } from "../../utils"
 
 const Search: React.FC = () => {
@@ -25,6 +26,7 @@ const Search: React.FC = () => {
           autoCorrect={false}
           onEndEditing={handleSearch}
         />
+        <BlankSearch />
       </SafeAreaView>
       <PlayingComponent />
     </View>
