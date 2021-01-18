@@ -1,12 +1,19 @@
 import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import { useDispatch, useSelector } from "react-redux"
+import BlankPlayingComponent from "./BlankPlayingComponent"
 
 const PlayingComponent: React.FC = () => {
   const navigation = useNavigation()
-  const { artist, title } = useSelector(
+  const { artist, title, image } = useSelector(
     (state: { song: songState }) => state.song
   )
   const { playing } = useSelector(
@@ -15,7 +22,7 @@ const PlayingComponent: React.FC = () => {
   const dispatch = useDispatch()
 
   if (artist === null) {
-    return <View></View>
+    return <BlankPlayingComponent />
   }
 
   return (
@@ -23,50 +30,65 @@ const PlayingComponent: React.FC = () => {
       style={styles.container}
       onPress={() => navigation.navigate("Playing")}
     >
-      <View style={styles.queue}>
-        <MaterialIcons
-          name="playlist-play"
-          size={40}
-          color="black"
-          onPress={() => navigation.navigate("Queue")}
-        />
-      </View>
-      <View style={styles.songInfo}>
-        <Text style={styles.songTitle} numberOfLines={1}>
-          {title}
-        </Text>
-        <Text style={styles.songArtist} numberOfLines={1}>
-          {artist}
-        </Text>
-      </View>
-      <View style={styles.controls}>
-        {playing ? (
-          <MaterialIcons
-            name="pause"
-            size={40}
-            color="black"
-            onPress={() => dispatch({ type: "FLIP_PLAY" })}
-          />
-        ) : (
-          <MaterialIcons
-            name="play-arrow"
-            size={40}
-            color="black"
-            onPress={() => dispatch({ type: "FLIP_PLAY" })}
-          />
-        )}
-      </View>
+      <ImageBackground
+        source={{ uri: image }}
+        blurRadius={40}
+        style={styles.background}
+      >
+        <View style={styles.backgroundColor}>
+          <View style={styles.queue}>
+            <MaterialIcons
+              name="playlist-play"
+              size={40}
+              color="white"
+              onPress={() => navigation.navigate("Queue")}
+            />
+          </View>
+          <View style={styles.songInfo}>
+            <Text style={styles.songTitle} numberOfLines={1}>
+              {title}
+            </Text>
+            <Text style={styles.songArtist} numberOfLines={1}>
+              {artist}
+            </Text>
+          </View>
+          <View style={styles.controls}>
+            {playing ? (
+              <MaterialIcons
+                name="pause"
+                size={40}
+                color="white"
+                onPress={() => dispatch({ type: "FLIP_PLAY" })}
+              />
+            ) : (
+              <MaterialIcons
+                name="play-arrow"
+                size={40}
+                color="white"
+                onPress={() => dispatch({ type: "FLIP_PLAY" })}
+              />
+            )}
+          </View>
+        </View>
+      </ImageBackground>
     </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     height: 70,
-    backgroundColor: "#ffffff",
+  },
+  backgroundColor: {
+    height: 70,
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: 15,
+    backgroundColor: "rgba(0,0,0, 0.7)",
+  },
+  container: {
+    height: 70,
   },
   queue: {
     flex: 1,
@@ -78,10 +100,11 @@ const styles = StyleSheet.create({
   },
   songTitle: {
     fontSize: 17,
+    color: "white",
   },
   songArtist: {
     fontSize: 15,
-    color: "rgb(126, 126, 126)",
+    color: "#babbbd",
   },
   controls: {
     flex: 1,
