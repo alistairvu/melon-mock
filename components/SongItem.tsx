@@ -48,6 +48,10 @@ const SongItem: React.FC<Props> = ({
       type: "SET_PLAY",
       payload: true,
     })
+    dispatch({
+      type: "SET_PLAY_VAL",
+      payload: 0,
+    })
   }
 
   return (

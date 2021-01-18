@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
 } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
-import { useNavigation } from "@react-navigation/native"
 import { useDispatch } from "react-redux"
 
 interface Props {
@@ -36,11 +35,15 @@ const AlbumItem: React.FC<Props> = ({
     dispatch({
       type: "NEW_SONG",
       payload: { artist, title, image, releaseDate, albumName, albumId },
-    }),
-      dispatch({
-        type: "SET_PLAY",
-        payload: true,
-      })
+    })
+    dispatch({
+      type: "SET_PLAY",
+      payload: true,
+    })
+    dispatch({
+      type: "SET_PLAY_VAL",
+      payload: 0,
+    })
   }
 
   return (

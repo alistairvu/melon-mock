@@ -85,6 +85,10 @@ const HomeItem: React.FC<Props> = (props) => {
                       type: "SET_PLAY",
                       payload: true,
                     })
+                    dispatch({
+                      type: "SET_PLAY_VAL",
+                      payload: 0,
+                    })
                   } else {
                     navigation.navigate("Collection", {
                       artist: artists
