@@ -47,7 +47,6 @@ const Charts: React.FC = () => {
             <ActivityIndicator size="large"></ActivityIndicator>
           </View>
         </SafeAreaView>
-        <PlayingComponent />
       </View>
     )
   }

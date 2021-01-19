@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  TouchableHighlight,
   ImageBackground,
 } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -26,7 +27,7 @@ const PlayingComponent: React.FC = () => {
   }
 
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       style={styles.container}
       onPress={() => navigation.navigate("Playing")}
     >
@@ -71,7 +72,7 @@ const PlayingComponent: React.FC = () => {
           </View>
         </View>
       </ImageBackground>
-    </TouchableOpacity>
+    </TouchableHighlight>
   )
 }
 

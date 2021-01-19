@@ -49,7 +49,7 @@ const Library: React.FC = () => {
 
 const styles = StyleSheet.create({
   headerStyles: {
-    color: "rgb(97, 209, 84)",
+    color: "#00ce3b",
   },
   screenNameStyle: {
     color: "black",

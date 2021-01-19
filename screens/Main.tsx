@@ -5,8 +5,6 @@ import { StatusBar } from "expo-status-bar"
 import Navigation from "./Navigation"
 import PlayingComponent from "../components/playing/PlayingComponent"
 
-const Stack = createStackNavigator()
-
 const Main: React.FC = () => {
   return (
     <View style={styles.container}>

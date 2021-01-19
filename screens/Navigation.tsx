@@ -18,7 +18,15 @@ const Navigation: React.FC = () => {
           options={{ headerShown: false }}
           component={DrawerScreen}
         />
-        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen
+          name="Search"
+          component={Search}
+          options={{
+            headerTintColor: "#00ce3b",
+            headerTitleStyle: { color: "#000" },
+            headerBackTitle: "Back",
+          }}
+        />
         <Stack.Screen
           name="Collection"
           component={Collection}
