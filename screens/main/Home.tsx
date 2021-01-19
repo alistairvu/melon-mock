@@ -1,20 +1,14 @@
 import React from "react"
-import { StyleSheet, Image, View } from "react-native"
-import { MaterialIcons } from "@expo/vector-icons"
+import { View } from "react-native"
 import HomeItem from "../../components/items/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
+import ScreenHeader from "../../components/ScreenHeader"
 
 const Home: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        <View style={styles.header}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/melon-full-transparent.png")}
-          />
-          <MaterialIcons name="settings" size={30} color="black" />
-        </View>
+      <ScreenHeader title="Home" />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <HomeItem
           link="37i9dQZF1DXcBWIGoYBM5M"
           title={"Today's Top Hits"}
@@ -44,21 +38,5 @@ const Home: React.FC = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 60,
-  },
-  header: {
-    marginHorizontal: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  image: {
-    height: 50,
-    width: 50,
-  },
-})
 
 export default Home

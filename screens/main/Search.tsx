@@ -28,7 +28,6 @@ const Search: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
-        <Text style={styles.heading}>Search</Text>
         <TextInput
           style={styles.input}
           value={term}
@@ -42,7 +41,6 @@ const Search: React.FC = () => {
         />
         {bodyDisplay()}
       </SafeAreaView>
-      <PlayingComponent />
     </View>
   )
 }
@@ -51,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 10,
-    marginTop: 60,
+    marginTop: 10,
   },
   heading: {
     fontSize: 40,
