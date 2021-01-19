@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { ActivityIndicator, FlatList } from "react-native"
 import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
-import { Text } from "react-native-elements"
 import ChartItem from "../../components/items/SongItem"
 import { StatusBar } from "expo-status-bar"
 import { getToken } from "../../utils"
-import PlayingComponent from "../../components/playing/PlayingComponent"
 import ScreenHeader from "../../components/ScreenHeader"
 
 const Charts: React.FC = () => {
@@ -41,8 +39,8 @@ const Charts: React.FC = () => {
   if (!loaded) {
     return (
       <View style={{ flex: 1 }}>
+        <ScreenHeader title="Top Songs" />
         <SafeAreaView style={styles.loading}>
-          <Text style={styles.loadingHeading}>Top Songs</Text>
           <View style={styles.loadSpinner}>
             <ActivityIndicator size="large"></ActivityIndicator>
           </View>

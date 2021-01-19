@@ -1,44 +1,59 @@
 import React, { useState } from "react"
-import { SafeAreaView, StyleSheet, TextInput, View } from "react-native"
-import { Text } from "react-native-elements"
-import PlayingComponent from "../../components/playing/PlayingComponent"
+import {
+  SafeAreaView,
+  StyleSheet,
+  TextInput,
+  View,
+  ScrollView,
+} from "react-native"
 import BlankSearch from "../../components/search/BlankSearch"
 import LoadingSearch from "../../components/search/LoadingSearch"
-import { getToken } from "../../utils"
+import SongList from "../../components/search/SongList"
+import { getSongs } from "../../searchUtils"
 
 const Search: React.FC = () => {
   const [term, setTerm] = useState<string>("")
   const [searching, setSearching] = useState<boolean>(false)
-  const [searchData, setSearchData] = useState<Array<any> | null>(null)
+  const [songData, setSongData] = useState<Array<songState> | null>(null)
 
   const bodyDisplay: Function = (): JSX.Element | undefined => {
     if (term.length === 0) {
       return <BlankSearch />
     }
-    if (searching || searchData === null) {
+    if (searching || songData === null) {
       return <LoadingSearch />
     }
+
+    return (
+      <ScrollView>
+        <SongList songList={songData} />
+      </ScrollView>
+    )
   }
 
-  const handleSearch = () => {
+  const handleSearch = async () => {
     setSearching(false)
+    const data = await getSongs(term)
+    setSongData(data)
     console.log(term)
   }
 
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
-        <TextInput
-          style={styles.input}
-          value={term}
-          onChangeText={(term) => {
-            setSearching(true)
-            setTerm(term)
-          }}
-          placeholder="Enter your query"
-          autoCorrect={false}
-          onEndEditing={handleSearch}
-        />
+        <View>
+          <TextInput
+            style={styles.input}
+            value={term}
+            onChangeText={(term) => {
+              setSearching(true)
+              setTerm(term)
+            }}
+            placeholder="Enter your query"
+            autoCorrect={false}
+            onEndEditing={handleSearch}
+          />
+        </View>
         {bodyDisplay()}
       </SafeAreaView>
     </View>
@@ -62,6 +77,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     backgroundColor: "#d3d3d3",
+    marginBottom: 10,
   },
 })
 

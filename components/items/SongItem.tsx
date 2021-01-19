@@ -13,13 +13,13 @@ import { useDispatch } from "react-redux"
 import OptionsMenu from "react-native-options-menu"
 
 interface Props {
-  title: string
-  artist: string
-  albumArtist?: string
-  image: string
-  albumName: string
-  releaseDate: string
-  albumId: string
+  artist: string | null
+  albumArtist?: string | null
+  title: string | null
+  image: string | undefined
+  albumName: string | null
+  releaseDate: string | null
+  albumId: string | null
 }
 
 const SongItem: React.FC<Props> = ({
