@@ -3,7 +3,6 @@ import { StyleSheet, Image, View } from "react-native"
 import { MaterialIcons } from "@expo/vector-icons"
 import HomeItem from "../../components/items/HomeItem"
 import { ScrollView } from "react-native-gesture-handler"
-import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const Home: React.FC = () => {
   return (
@@ -42,7 +41,6 @@ const Home: React.FC = () => {
           type={"songs"}
         />
       </ScrollView>
-      <PlayingComponent />
     </View>
   )
 }

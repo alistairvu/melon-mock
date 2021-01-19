@@ -36,7 +36,6 @@ const LibraryHome: React.FC = () => {
           <Text style={styles.navOpacityText}>Artists</Text>
         </TouchableOpacity>
       </SafeAreaView>
-      <PlayingComponent />
     </View>
   )
 }

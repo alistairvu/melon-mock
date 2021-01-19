@@ -90,7 +90,6 @@ const Charts: React.FC = () => {
           keyExtractor={(item) => item.track.id}
         />
       </SafeAreaView>
-      <PlayingComponent />
     </View>
   )
 }

@@ -77,18 +77,19 @@ const PlayingComponent: React.FC = () => {
 
 const styles = StyleSheet.create({
   background: {
-    height: 70,
+    height: 100,
   },
   backgroundColor: {
-    height: 70,
+    height: 100,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 15,
+    paddingBottom: 25,
     backgroundColor: "rgba(0,0,0, 0.7)",
   },
   container: {
-    height: 70,
+    height: 100,
   },
   queue: {
     flex: 1,

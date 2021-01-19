@@ -25,12 +25,13 @@ const BlankPlayingComponent: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 70,
+    height: 100,
     backgroundColor: "rgba(0,0,0, 0.7)",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 15,
+    paddingBottom: 25,
   },
   queue: {
     flex: 1,

@@ -48,7 +48,6 @@ const App: React.FC = () => {
             component={Queue}
             options={{ animationEnabled: false }}
           />
-          <Stack.Screen name="Collection" component={Collection} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

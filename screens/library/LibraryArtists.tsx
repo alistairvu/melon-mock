@@ -11,7 +11,6 @@ const LibraryArtists: React.FC = () => {
           Artists
         </Text>
       </SafeAreaView>
-      <PlayingComponent />
     </View>
   )
 }

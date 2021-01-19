@@ -11,7 +11,6 @@ const LibraryAlbums: React.FC = () => {
           Albums
         </Text>
       </SafeAreaView>
-      <PlayingComponent />
     </View>
   )
 }
