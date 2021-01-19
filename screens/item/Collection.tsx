@@ -139,7 +139,6 @@ const styles = StyleSheet.create({
   },
   trackList: {
     flex: 2,
-    marginBottom: 30,
   },
   background: {
     flex: 1,
