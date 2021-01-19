@@ -6,9 +6,9 @@ import ChartItem from "../../components/items/SongItem"
 import { StatusBar } from "expo-status-bar"
 import { getToken } from "../../utils"
 import PlayingComponent from "../../components/playing/PlayingComponent"
+import ScreenHeader from "../../components/ScreenHeader"
 
 const Charts: React.FC = () => {
-  const [date, setDate] = useState<string | null>(null)
   const [loaded, setLoaded] = useState<boolean>(false)
   const [songData, setSongData] = useState<Array<any>>([])
 
@@ -35,15 +35,6 @@ const Charts: React.FC = () => {
   }
 
   useEffect(() => {
-    const today = new Date()
-    setDate(
-      today.toLocaleString("en-AU", {
-        day: "numeric",
-        month: "numeric",
-        year: "numeric",
-      })
-    )
-
     getSongs()
   }, [])
 
@@ -63,9 +54,9 @@ const Charts: React.FC = () => {
 
   return (
     <View style={{ flex: 1 }}>
+      <ScreenHeader title="Top Songs" />
       <SafeAreaView style={styles.container}>
         <StatusBar style="dark" />
-        <Text style={styles.heading}>Top Songs</Text>
         <FlatList
           data={songData}
           renderItem={({ item }) => {
@@ -85,7 +76,6 @@ const Charts: React.FC = () => {
               />
             )
           }}
-          ListHeaderComponent={<Text style={styles.chartTitle}>{date}</Text>}
           style={styles.chartList}
           keyExtractor={(item) => item.track.id}
         />
@@ -97,7 +87,6 @@ const Charts: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     marginLeft: 10,
-    marginTop: 60,
     flex: 1,
   },
   heading: {
