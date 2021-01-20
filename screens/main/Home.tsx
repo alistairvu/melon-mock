@@ -1,6 +1,6 @@
 import React from "react"
 import { View } from "react-native"
-import HomeItem from "../../components/items/HomeItem"
+import HomeItem from "../../components/items/HomeList"
 import { ScrollView } from "react-native-gesture-handler"
 import ScreenHeader from "../../components/ScreenHeader"
 

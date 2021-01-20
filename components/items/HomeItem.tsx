@@ -1,136 +1,56 @@
-import { useNavigation } from "@react-navigation/native"
-import axios from "axios"
-import React, { useState, useEffect } from "react"
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native"
+import React from "react"
+import { TouchableOpacity, Text, Image, StyleSheet } from "react-native"
 import { useDispatch } from "react-redux"
-import { getToken } from "../../utils"
 
 interface Props {
-  link: string
-  title: string
-  type: string
+  item: any
 }
 
-const HomeItem: React.FC<Props> = (props) => {
-  const { link, title, type } = props
-  const [data, setData] = useState<Array<any>>([])
-  const [loaded, setLoaded] = useState(false)
+const HomeItem: React.FC<Props> = ({ item }: { item: any }) => {
+  const { track } = item
+  const { album, artists, name } = track
   const dispatch = useDispatch()
-  const navigation = useNavigation()
-
-  const getData = async () => {
-    const token = await getToken()
-    try {
-      const res = await fetch(
-        `https://api.spotify.com/v1/playlists/${link}/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date%2Cartists)%252Cartists(name)%252Cname%252Cid))&limit=8`,
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      const data = await res.json()
-      setData(data.items)
-      setLoaded(true)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  useEffect(() => {
-    getData()
-  }, [])
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
-      {loaded ? (
-        <FlatList
-          data={data}
-          showsHorizontalScrollIndicator={false}
-          horizontal={true}
-          renderItem={({ item }) => {
-            const { track } = item
-            const { album, artists, name } = track
-            return (
-              <TouchableOpacity
-                style={styles.songContainer}
-                onPress={() => {
-                  if (type === "songs") {
-                    dispatch({
-                      type: "NEW_SONG",
-                      payload: {
-                        artist: artists
-                          .map((x: { name: string }) => x.name)
-                          .join(", "),
-                        title: name,
-                        image: album.images[0].url,
-                        albumName: album.name,
-                        releaseDate: album["release_date"],
-                        albumId: album.id,
-                        albumArtist: album.artists
-                          .map((x: { name: any }) => x.name)
-                          .join(", "),
-                      },
-                    })
-                    dispatch({
-                      type: "SET_PLAY",
-                      payload: true,
-                    })
-                    dispatch({
-                      type: "SET_PLAY_VAL",
-                      payload: 0,
-                    })
-                  } else {
-                    navigation.navigate("Collection", {
-                      artist: artists
-                        .map((x: { name: string }) => x.name)
-                        .join(", "),
-                      title: name,
-                      image: album.images[0].url,
-                    })
-                  }
-                }}
-              >
-                <Image
-                  source={{ uri: album.images[0].url }}
-                  style={styles.image}
-                />
-                <Text numberOfLines={1} style={styles.songTitle}>
-                  {name}
-                </Text>
-                <Text numberOfLines={1}>
-                  {artists.map((x: { name: string }) => x.name).join(", ")}
-                </Text>
-              </TouchableOpacity>
-            )
-          }}
-          keyExtractor={(item) => item.track.id}
-        />
-      ) : (
-        <ActivityIndicator size="large"></ActivityIndicator>
-      )}
-    </View>
+    <TouchableOpacity
+      style={styles.songContainer}
+      onPress={() => {
+        dispatch({
+          type: "NEW_SONG",
+          payload: {
+            artist: artists.map((x: { name: string }) => x.name).join(", "),
+            title: name,
+            image: album.images[0].url,
+            albumName: album.name,
+            releaseDate: album["release_date"],
+            albumId: album.id,
+            albumArtist: album.artists
+              .map((x: { name: any }) => x.name)
+              .join(", "),
+          },
+        })
+        dispatch({
+          type: "SET_PLAY",
+          payload: true,
+        })
+        dispatch({
+          type: "SET_PLAY_VAL",
+          payload: 0,
+        })
+      }}
+    >
+      <Image source={{ uri: album.images[0].url }} style={styles.image} />
+      <Text numberOfLines={1} style={styles.songTitle}>
+        {name}
+      </Text>
+      <Text numberOfLines={1}>
+        {artists.map((x: { name: string }) => x.name).join(", ")}
+      </Text>
+    </TouchableOpacity>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 15,
-    marginBottom: 15,
-  },
-  title: { fontSize: 30, fontWeight: "700", marginBottom: 15, marginLeft: 10 },
   songContainer: {
     width: 160,
     marginLeft: 5,

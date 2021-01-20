@@ -13,7 +13,7 @@ interface songState {
 
 interface albumData {
   artist: string | null
-  image: string | null
+  image: string | undefined
   albumName: string | null
   releaseDate: string | null
   albumId: string | null

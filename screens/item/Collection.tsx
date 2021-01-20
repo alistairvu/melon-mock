@@ -12,9 +12,8 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import { SafeAreaView } from "react-native-safe-area-context"
-import AlbumItem from "../../components/items/AlbumItem"
+import AlbumItem from "../../components/items/AlbumTrackItem"
 import { getToken } from "../../utils"
-import PlayingComponent from "../../components/playing/PlayingComponent"
 
 const Collection: React.FC = () => {
   const route: RouteProp<
