@@ -16,7 +16,7 @@ const ScreenHeader: React.FC<Props> = ({ title }) => {
         <MaterialIcons
           name="menu"
           size={24}
-          color="black"
+          color="#00ce3b"
           onPress={() => navigation.openDrawer()}
         />
       </View>
@@ -27,7 +27,7 @@ const ScreenHeader: React.FC<Props> = ({ title }) => {
         <MaterialIcons
           name="search"
           size={24}
-          color="black"
+          color="#00ce3b"
           onPress={() => navigation.navigate("Search")}
         />
       </View>
