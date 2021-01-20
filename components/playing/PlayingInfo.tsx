@@ -17,7 +17,6 @@ const PlayingInfo: React.FC = () => {
     albumId,
     albumArtist,
   } = song
-  console.log(albumArtist)
 
   return (
     <View style={{ flex: 1, flexDirection: "row" }}>

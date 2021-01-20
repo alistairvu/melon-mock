@@ -35,7 +35,6 @@ const Search: React.FC = () => {
     setSearching(false)
     const data = await getSongs(term)
     setSongData(data)
-    console.log(term)
   }
 
   return (
