@@ -14,7 +14,7 @@ const SongList: React.FC<Props> = ({ songList }) => {
   })
 
   return (
-    <View>
+    <View style={{ marginHorizontal: 10 }}>
       <Text style={styles.headerText}>Songs</Text>
       {songDisplay}
     </View>

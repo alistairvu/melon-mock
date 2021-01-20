@@ -38,7 +38,7 @@ const getAlbums = async (query: string) => {
   try {
     const token = await getToken()
     const res = await fetch(
-      `https://api.spotify.com/v1/search?q=${query}&type=track`,
+      `https://api.spotify.com/v1/search?q=${query}&type=album`,
       {
         method: "GET",
         headers: {
@@ -61,10 +61,11 @@ const getAlbums = async (query: string) => {
         albumId: id,
       }
     })
+    console.log(albumData)
     return albumData
   } catch (error) {
     console.log(error)
   }
 }
 
-export { getSongs }
+export { getSongs, getAlbums }

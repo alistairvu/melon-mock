@@ -11,8 +11,10 @@ const AlbumSearchItem: React.FC<albumData> = (props) => {
       onPress={() => navigation.navigate("Collection", { ...props })}
       style={styles.container}
     >
-      <Image source={{ uri: image }} />
-      <Text numberOfLines={1}>{albumName}</Text>
+      <Image source={{ uri: image }} style={styles.image} />
+      <Text numberOfLines={1} style={styles.name}>
+        {albumName}
+      </Text>
       <Text numberOfLines={1}>{artist}</Text>
     </TouchableOpacity>
   )
@@ -28,6 +30,12 @@ const styles = StyleSheet.create({
   name: {
     marginTop: 5,
     fontWeight: "600",
+  },
+  image: {
+    height: 150,
+    width: 150,
+    resizeMode: "stretch",
+    borderRadius: 5,
   },
 })
 
