@@ -16,7 +16,7 @@ interface albumData {
   image: string | undefined
   albumName: string | null
   releaseDate: string | null
-  albumId: string | null
+  albumId: string
 }
 
 interface statusState {
