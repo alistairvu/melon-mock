@@ -10,6 +10,7 @@ import {
 import AlbumList from "../../components/search/AlbumList"
 import BlankSearch from "../../components/search/BlankSearch"
 import LoadingSearch from "../../components/search/LoadingSearch"
+import SearchBar from "../../components/search/SearchBar"
 import SongList from "../../components/search/SongList"
 import { getAlbums, getSongs } from "../../searchUtils"
 
@@ -45,30 +46,15 @@ const Search: React.FC = () => {
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={styles.container}>
-        <View style={styles.searchContainer}>
-          <View style={{ flexDirection: "row" }}>
-            <MaterialIcons name="search" size={24} color="black" />
-            <TextInput
-              style={styles.input}
-              value={term}
-              onChangeText={(term) => {
-                setSearching(true)
-                setTerm(term)
-              }}
-              placeholder="Enter your query"
-              autoCorrect={false}
-              onEndEditing={handleSearch}
-            />
-          </View>
-          {term.trim().length > 0 && (
-            <MaterialIcons
-              name="clear"
-              size={24}
-              color="black"
-              onPress={() => setTerm("")}
-            />
-          )}
-        </View>
+        <SearchBar
+          term={term}
+          onChange={(term) => {
+            setSearching(true)
+            setTerm(term)
+          }}
+          onEnd={handleSearch}
+          onPress={() => setTerm("")}
+        />
         {bodyDisplay()}
       </SafeAreaView>
     </View>

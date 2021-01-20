@@ -61,7 +61,6 @@ const getAlbums = async (query: string) => {
         albumId: id,
       }
     })
-    console.log(albumData)
     return albumData
   } catch (error) {
     console.log(error)
