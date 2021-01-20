@@ -9,6 +9,17 @@ interface Props {
 const SongList: React.FC<Props> = ({ songList }) => {
   const displayList = songList.length > 8 ? songList.slice(0, 8) : songList
 
+  if (songList.length === 0) {
+    return (
+      <View style={{ marginHorizontal: 10 }}>
+        <Text style={styles.headerText}>Songs</Text>
+        <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
+          No matching songs found.
+        </Text>
+      </View>
+    )
+  }
+
   const songDisplay = displayList.map((item, index) => {
     return <SongItem {...item} key={index}></SongItem>
   })

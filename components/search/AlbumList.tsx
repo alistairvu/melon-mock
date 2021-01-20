@@ -11,6 +11,17 @@ const AlbumList: React.FC<Props> = ({ albumList }) => {
   if (albumList !== undefined) {
     const displayList = albumList.length > 8 ? albumList.slice(0, 5) : albumList
 
+    if (albumList.length === 0) {
+      return (
+        <View>
+          <Text style={styles.title}>Albums</Text>
+          <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
+            No matching albums found.
+          </Text>
+        </View>
+      )
+    }
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Albums</Text>
@@ -27,7 +38,9 @@ const AlbumList: React.FC<Props> = ({ albumList }) => {
   return (
     <View>
       <Text style={styles.title}>Albums</Text>
-      <Text>No albums found</Text>
+      <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
+        No matching albums found.
+      </Text>
     </View>
   )
 }
