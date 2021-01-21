@@ -1,13 +1,18 @@
+import { MaterialIcons } from "@expo/vector-icons"
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import AlbumSearchItem from "./AlbumSearchItem"
 
 interface Props {
   albumList: Array<albumData> | undefined
+  query: string
 }
 
-const AlbumList: React.FC<Props> = ({ albumList }) => {
+const AlbumList: React.FC<Props> = ({ albumList, query }) => {
+  const navigation = useNavigation()
+
   if (albumList !== undefined) {
     const displayList = albumList.length > 5 ? albumList.slice(0, 5) : albumList
 
@@ -16,7 +21,7 @@ const AlbumList: React.FC<Props> = ({ albumList }) => {
         <View>
           <Text style={styles.title}>Albums</Text>
           <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
-            No matching albums found.
+            No albums matching {query} found.
           </Text>
         </View>
       )
@@ -24,7 +29,18 @@ const AlbumList: React.FC<Props> = ({ albumList }) => {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Albums</Text>
+        <TouchableOpacity
+          style={styles.headerContainer}
+          onPress={() =>
+            navigation.navigate("All Albums", {
+              albumList,
+              query,
+            })
+          }
+        >
+          <Text style={styles.title}>Albums</Text>
+          <MaterialIcons name="keyboard-arrow-right" size={40} color="black" />
+        </TouchableOpacity>
         <FlatList
           data={displayList}
           showsHorizontalScrollIndicator={false}
@@ -56,6 +72,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 15,
     marginBottom: 15,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10,
   },
 })
 

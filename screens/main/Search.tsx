@@ -35,7 +35,7 @@ const Search: React.FC = () => {
     return (
       <ScrollView>
         <SongList songList={songData} query={term} />
-        <AlbumList albumList={albumData} />
+        <AlbumList albumList={albumData} query={term} />
         <ArtistList artistList={artistData} />
       </ScrollView>
     )

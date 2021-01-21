@@ -1,5 +1,6 @@
+import { MaterialIcons } from "@expo/vector-icons"
 import React from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
 import ArtistSearchItem from "./ArtistSearchItem"
 
@@ -31,7 +32,10 @@ const ArtistList: React.FC<Props> = ({ artistList }) => {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Artists</Text>
+        <TouchableOpacity style={styles.headerContainer}>
+          <Text style={styles.title}>Artists</Text>
+          <MaterialIcons name="keyboard-arrow-right" size={40} color="black" />
+        </TouchableOpacity>
         <FlatList
           data={displayList}
           showsHorizontalScrollIndicator={false}
@@ -63,6 +67,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 15,
     marginBottom: 15,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10,
   },
 })
 

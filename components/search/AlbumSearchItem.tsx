@@ -23,9 +23,9 @@ const AlbumSearchItem: React.FC<albumData> = (props) => {
 const styles = StyleSheet.create({
   container: {
     width: 160,
-    marginLeft: 5,
-    marginRight: 5,
     alignItems: "center",
+    paddingVertical: 10,
+    marginHorizontal: 5,
   },
   name: {
     marginTop: 5,

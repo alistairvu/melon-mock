@@ -6,6 +6,7 @@ import DrawerScreen from "./main/Drawer"
 import Search from "./main/Search"
 import Collection from "./item/Collection"
 import AllSongs from "./search/AllSongs"
+import AllAlbums from "./search/AllAlbums"
 
 const Stack = createStackNavigator()
 
@@ -41,6 +42,16 @@ const Navigation: React.FC = () => {
             headerTitleStyle: { color: "#000" },
             headerBackTitle: "Back",
             title: `Songs matching "${route.params.query}"`,
+          })}
+        />
+        <Stack.Screen
+          name="All Albums"
+          component={AllAlbums}
+          options={({ route }: { route: any }) => ({
+            headerTintColor: "#00ce3b",
+            headerTitleStyle: { color: "#000" },
+            headerBackTitle: "Back",
+            title: `Albums matching "${route.params.query}"`,
           })}
         />
       </Stack.Navigator>
