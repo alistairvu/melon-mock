@@ -5,12 +5,11 @@ import { MaterialIcons } from "@expo/vector-icons"
 interface Props {
   term: string
   onChange: (term: string) => void
-  onEnd: () => void
   onPress: () => void
 }
 
 const SearchBar: React.FC<Props> = (props: Props) => {
-  const { term, onChange, onEnd, onPress } = props
+  const { term, onChange, onPress } = props
 
   return (
     <View style={styles.searchContainer}>
@@ -22,7 +21,6 @@ const SearchBar: React.FC<Props> = (props: Props) => {
           onChangeText={(term) => onChange(term)}
           placeholder="Enter your query"
           autoCorrect={false}
-          onEndEditing={onEnd}
         />
       </View>
       {term.trim().length > 0 && (

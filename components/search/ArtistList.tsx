@@ -4,20 +4,26 @@ import { FlatList } from "react-native-gesture-handler"
 import ArtistSearchItem from "./ArtistSearchItem"
 
 interface Props {
-  albumList: Array<artistData> | undefined
+  artistList: Array<artistData> | undefined
 }
 
-const ArtistList: React.FC<Props> = ({ albumList: artistList }) => {
+const ArtistList: React.FC<Props> = ({ artistList }) => {
   if (artistList !== undefined) {
     const displayList =
-      artistList.length > 5 ? artistList.slice(0, 5) : artistList
+      artistList.length > 4 ? artistList.slice(0, 4) : artistList
 
     if (artistList.length === 0) {
       return (
         <View>
           <Text style={styles.title}>Artists</Text>
-          <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
-            No matching albums found.
+          <Text
+            style={{
+              textAlign: "center",
+              color: "rgb(126, 126, 126)",
+              marginBottom: 20,
+            }}
+          >
+            No matching artists found.
           </Text>
         </View>
       )
@@ -40,7 +46,7 @@ const ArtistList: React.FC<Props> = ({ albumList: artistList }) => {
     <View>
       <Text style={styles.title}>Artists</Text>
       <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
-        No matching albums found.
+        No matching artists found.
       </Text>
     </View>
   )

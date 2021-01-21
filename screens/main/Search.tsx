@@ -1,5 +1,5 @@
 import { MaterialIcons } from "@expo/vector-icons"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native"
 import AlbumList from "../../components/search/AlbumList"
+import ArtistList from "../../components/search/ArtistList"
 import BlankSearch from "../../components/search/BlankSearch"
 import LoadingSearch from "../../components/search/LoadingSearch"
 import SearchBar from "../../components/search/SearchBar"
@@ -16,18 +17,18 @@ import { getAlbums, getArtists, getSongs } from "../../searchUtils"
 
 const Search: React.FC = () => {
   const [term, setTerm] = useState<string>("")
-  const [searching, setSearching] = useState<boolean>(false)
   const [songData, setSongData] = useState<Array<songData> | undefined>([])
   const [albumData, setAlbumData] = useState<Array<albumData> | undefined>([])
   const [artistData, setArtistData] = useState<Array<artistData> | undefined>(
     []
   )
+  const [loading, setLoading] = useState<boolean>(false)
 
   const bodyDisplay: Function = (): JSX.Element | undefined => {
     if (term.length === 0) {
       return <BlankSearch />
     }
-    if (searching || songData === null) {
+    if (loading) {
       return <LoadingSearch />
     }
 
@@ -35,21 +36,25 @@ const Search: React.FC = () => {
       <ScrollView>
         <SongList songList={songData} />
         <AlbumList albumList={albumData} />
+        <ArtistList artistList={artistData} />
       </ScrollView>
     )
   }
 
-  const handleSearch = async () => {
-    setSearching(false)
-    const data = {
-      songs: await getSongs(term),
-      albums: await getAlbums(term),
-      artists: await getArtists(term),
-    }
-    setSongData(data.songs)
-    setAlbumData(data.albums)
-    setArtistData(data.artists)
+  const performSearch = async () => {
+    setLoading(true)
+    const songs = await getSongs(term)
+    const albums = await getAlbums(term)
+    const artists = await getArtists(term)
+    setSongData(songs)
+    setAlbumData(albums)
+    setArtistData(artists)
+    setLoading(false)
   }
+
+  useEffect(() => {
+    performSearch()
+  }, [term])
 
   return (
     <View style={{ flex: 1 }}>
@@ -57,10 +62,8 @@ const Search: React.FC = () => {
         <SearchBar
           term={term}
           onChange={(term) => {
-            setSearching(true)
             setTerm(term)
           }}
-          onEnd={handleSearch}
           onPress={() => setTerm("")}
         />
         {bodyDisplay()}

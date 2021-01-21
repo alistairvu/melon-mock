@@ -84,11 +84,16 @@ const getArtists = async (query: string) => {
     const json = await res.json()
     const rawData = await json.artists.items
 
-    const artistData: Array<artistData> = rawData.map((item: any) => ({
-      name: item.name,
-      id: item.id,
-      image: item.images[0].url,
-    }))
+    const artistData: Array<artistData> = rawData.map((item: any) => {
+      return {
+        name: item.name,
+        id: item.id,
+        image:
+          item.images.length > 0
+            ? item.images[0]["url"]
+            : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
+      }
+    })
     return artistData
   } catch (error) {
     console.log(error)
