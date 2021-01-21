@@ -34,7 +34,7 @@ const Search: React.FC = () => {
 
     return (
       <ScrollView>
-        <SongList songList={songData} />
+        <SongList songList={songData} query={term} />
         <AlbumList albumList={albumData} />
         <ArtistList artistList={artistData} />
       </ScrollView>
@@ -53,7 +53,9 @@ const Search: React.FC = () => {
   }
 
   useEffect(() => {
-    performSearch()
+    if (term.trim().length > 0) {
+      performSearch()
+    }
   }, [term])
 
   return (

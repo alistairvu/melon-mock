@@ -1,12 +1,18 @@
+import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
+import { TouchableOpacity } from "react-native-gesture-handler"
 import SongItem from "../items/SongItem"
+import { MaterialIcons } from "@expo/vector-icons"
 
 interface Props {
   songList: Array<songData> | undefined
+  query: string
 }
 
-const SongList: React.FC<Props> = ({ songList }) => {
+const SongList: React.FC<Props> = ({ songList, query }) => {
+  const navigation = useNavigation()
+
   if (songList !== undefined) {
     const displayList = songList.length > 8 ? songList.slice(0, 8) : songList
 
@@ -15,7 +21,7 @@ const SongList: React.FC<Props> = ({ songList }) => {
         <View style={{ marginHorizontal: 10 }}>
           <Text style={styles.headerText}>Songs</Text>
           <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
-            No matching songs found.
+            No songs matching {query} found.
           </Text>
         </View>
       )
@@ -27,7 +33,18 @@ const SongList: React.FC<Props> = ({ songList }) => {
 
     return (
       <View style={{ marginHorizontal: 10 }}>
-        <Text style={styles.headerText}>Songs</Text>
+        <TouchableOpacity
+          style={styles.headerContainer}
+          onPress={() =>
+            navigation.navigate("All Songs", {
+              songList,
+              query,
+            })
+          }
+        >
+          <Text style={styles.headerText}>Songs</Text>
+          <MaterialIcons name="keyboard-arrow-right" size={40} color="black" />
+        </TouchableOpacity>
         {songDisplay}
       </View>
     )
@@ -49,6 +66,12 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     marginBottom: 15,
     marginTop: 10,
+  },
+
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 10,
   },
 })
 

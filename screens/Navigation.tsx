@@ -5,6 +5,7 @@ import { StatusBar } from "expo-status-bar"
 import DrawerScreen from "./main/Drawer"
 import Search from "./main/Search"
 import Collection from "./item/Collection"
+import AllSongs from "./search/AllSongs"
 
 const Stack = createStackNavigator()
 
@@ -31,6 +32,16 @@ const Navigation: React.FC = () => {
           name="Collection"
           component={Collection}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="All Songs"
+          component={AllSongs}
+          options={({ route }: { route: any }) => ({
+            headerTintColor: "#00ce3b",
+            headerTitleStyle: { color: "#000" },
+            headerBackTitle: "Back",
+            title: `Songs matching "${route.params.query}"`,
+          })}
         />
       </Stack.Navigator>
     </View>
