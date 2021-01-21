@@ -67,4 +67,32 @@ const getAlbums = async (query: string) => {
   }
 }
 
+const getArtists = async (query: string) => {
+  try {
+    const token = await getToken()
+    const res = await fetch(
+      `https://api.spotify.com/v1/search?q=${query}&type=artist`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+    const json = await res.json()
+    const rawData = await json.artists.items
+
+    const artistData: Array<artistData> = rawData.map((item: any) => ({
+      name: item.name,
+      id: item.id,
+      image: item.images[0].url,
+    }))
+    return artistData
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export { getSongs, getAlbums }
