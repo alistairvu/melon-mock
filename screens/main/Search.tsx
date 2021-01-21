@@ -17,7 +17,7 @@ import { getAlbums, getSongs } from "../../searchUtils"
 const Search: React.FC = () => {
   const [term, setTerm] = useState<string>("")
   const [searching, setSearching] = useState<boolean>(false)
-  const [songData, setSongData] = useState<Array<songState>>([])
+  const [songData, setSongData] = useState<Array<songData>>([])
   const [albumData, setAlbumData] = useState<Array<albumData> | undefined>([])
 
   const bodyDisplay: Function = (): JSX.Element | undefined => {

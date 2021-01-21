@@ -15,7 +15,7 @@ import BlankPlayingComponent from "./BlankPlayingComponent"
 const PlayingComponent: React.FC = () => {
   const navigation = useNavigation()
   const { artist, title, image } = useSelector(
-    (state: { song: songState }) => state.song
+    (state: { song: songData }) => state.song
   )
   const { playing } = useSelector(
     (state: { status: { playing: boolean } }) => state.status

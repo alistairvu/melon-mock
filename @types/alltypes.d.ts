@@ -1,7 +1,7 @@
 declare module "react-native-options-menu"
 declare module "../secrets"
 
-interface songState {
+interface songData {
   artist: string | null
   albumArtist?: string | null
   title: string | null
@@ -27,6 +27,12 @@ interface statusState {
 }
 
 interface rootState {
-  song: songState
+  song: songData
   status: statusState
+}
+
+interface artistData {
+  name: string
+  image: string
+  id: string
 }

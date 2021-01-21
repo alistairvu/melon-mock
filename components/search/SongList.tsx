@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native"
 import SongItem from "../items/SongItem"
 
 interface Props {
-  songList: Array<songState>
+  songList: Array<songData>
 }
 
 const SongList: React.FC<Props> = ({ songList }) => {

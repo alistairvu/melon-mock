@@ -1,9 +1,9 @@
 interface songAction {
   type: "NEW_SONG"
-  payload: songState
+  payload: songData
 }
 
-const initialState: songState = {
+const initialState: songData = {
   artist: null,
   albumArtist: null,
   title: null,
@@ -13,7 +13,7 @@ const initialState: songState = {
   albumId: null,
 }
 
-const songReducer = (state: songState = initialState, action: songAction) => {
+const songReducer = (state: songData = initialState, action: songAction) => {
   const { type, payload } = action
 
   switch (type) {

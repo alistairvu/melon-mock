@@ -7,7 +7,7 @@ import OptionsMenu from "react-native-options-menu"
 
 const PlayingInfo: React.FC = () => {
   const navigation = useNavigation()
-  const song = useSelector((state: { song: songState }) => state.song)
+  const song = useSelector((state: { song: songData }) => state.song)
   const {
     artist,
     title,

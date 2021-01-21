@@ -12,7 +12,7 @@ import PlayingControls from "../../components/playing/PlayingControls"
 import { useSelector } from "react-redux"
 
 const Playing: React.FC = () => {
-  const song = useSelector((state: { song: songState }) => state.song)
+  const song = useSelector((state: { song: songData }) => state.song)
   const { artist, title, image, albumName, releaseDate, albumId } = song
 
   return (
