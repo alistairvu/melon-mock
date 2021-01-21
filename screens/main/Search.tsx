@@ -12,13 +12,16 @@ import BlankSearch from "../../components/search/BlankSearch"
 import LoadingSearch from "../../components/search/LoadingSearch"
 import SearchBar from "../../components/search/SearchBar"
 import SongList from "../../components/search/SongList"
-import { getAlbums, getSongs } from "../../searchUtils"
+import { getAlbums, getArtists, getSongs } from "../../searchUtils"
 
 const Search: React.FC = () => {
   const [term, setTerm] = useState<string>("")
   const [searching, setSearching] = useState<boolean>(false)
-  const [songData, setSongData] = useState<Array<songData>>([])
+  const [songData, setSongData] = useState<Array<songData> | undefined>([])
   const [albumData, setAlbumData] = useState<Array<albumData> | undefined>([])
+  const [artistData, setArtistData] = useState<Array<artistData> | undefined>(
+    []
+  )
 
   const bodyDisplay: Function = (): JSX.Element | undefined => {
     if (term.length === 0) {
@@ -38,9 +41,14 @@ const Search: React.FC = () => {
 
   const handleSearch = async () => {
     setSearching(false)
-    const data = { songs: await getSongs(term), albums: await getAlbums(term) }
+    const data = {
+      songs: await getSongs(term),
+      albums: await getAlbums(term),
+      artists: await getArtists(term),
+    }
     setSongData(data.songs)
     setAlbumData(data.albums)
+    setArtistData(data.artists)
   }
 
   return (

@@ -1,20 +1,21 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
-import AlbumSearchItem from "./AlbumSearchItem"
+import ArtistSearchItem from "./ArtistSearchItem"
 
 interface Props {
-  albumList: Array<albumData> | undefined
+  albumList: Array<artistData> | undefined
 }
 
-const AlbumList: React.FC<Props> = ({ albumList }) => {
-  if (albumList !== undefined) {
-    const displayList = albumList.length > 5 ? albumList.slice(0, 5) : albumList
+const ArtistList: React.FC<Props> = ({ albumList: artistList }) => {
+  if (artistList !== undefined) {
+    const displayList =
+      artistList.length > 5 ? artistList.slice(0, 5) : artistList
 
-    if (albumList.length === 0) {
+    if (artistList.length === 0) {
       return (
         <View>
-          <Text style={styles.title}>Albums</Text>
+          <Text style={styles.title}>Artists</Text>
           <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
             No matching albums found.
           </Text>
@@ -24,20 +25,20 @@ const AlbumList: React.FC<Props> = ({ albumList }) => {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Albums</Text>
+        <Text style={styles.title}>Artists</Text>
         <FlatList
           data={displayList}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-          renderItem={({ item }) => <AlbumSearchItem {...item} />}
-          keyExtractor={(item) => item.albumId}
+          renderItem={({ item }) => <ArtistSearchItem {...item} />}
+          keyExtractor={(item) => item.id}
         />
       </View>
     )
   }
   return (
     <View>
-      <Text style={styles.title}>Albums</Text>
+      <Text style={styles.title}>Artists</Text>
       <Text style={{ textAlign: "center", color: "rgb(126, 126, 126)" }}>
         No matching albums found.
       </Text>
@@ -59,4 +60,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AlbumList
+export default ArtistList

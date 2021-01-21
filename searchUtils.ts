@@ -16,7 +16,7 @@ const getSongs = async (query: string) => {
     )
     const json = await res.json()
     const rawData = await json.tracks.items
-    const songData = rawData.map((item: any) => {
+    const songData: Array<songData> = rawData.map((item: any) => {
       const { album, artists, name } = item
       return {
         title: name,
@@ -95,4 +95,4 @@ const getArtists = async (query: string) => {
   }
 }
 
-export { getSongs, getAlbums }
+export { getSongs, getAlbums, getArtists }
