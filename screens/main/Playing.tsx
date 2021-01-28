@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   safeContainer: {
     flex: 1,
     marginHorizontal: 15,
-    marginTop: 20,
+    marginTop: 45,
   },
   topInfo: {
     flex: 1,

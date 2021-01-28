@@ -12,7 +12,6 @@ import Main from "./screens/Main"
 import SplashScreen from "./screens/Splash"
 import Playing from "./screens/main/Playing"
 import Queue from "./screens/main/Queue"
-import Collection from "./screens/item/Collection"
 
 const Stack = createStackNavigator()
 
@@ -39,7 +38,7 @@ const App: React.FC = () => {
               gestureDirection: "vertical",
               cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS,
               gestureResponseDistance: {
-                vertical: 500,
+                vertical: 1000,
               },
             }}
           />

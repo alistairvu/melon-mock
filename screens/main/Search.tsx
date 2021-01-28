@@ -7,13 +7,13 @@ import {
   View,
   ScrollView,
 } from "react-native"
-import AlbumList from "../../components/search/AlbumList"
-import ArtistList from "../../components/search/ArtistList"
+import AlbumList from "../../components/items/AlbumList"
+import ArtistList from "../../components/items/ArtistList"
 import BlankSearch from "../../components/search/BlankSearch"
 import LoadingSearch from "../../components/search/LoadingSearch"
 import SearchBar from "../../components/search/SearchBar"
-import SongList from "../../components/search/SongList"
-import { getAlbums, getArtists, getSongs } from "../../searchUtils"
+import SongList from "../../components/items/SongList"
+import { getAlbums, getArtists, getSongs } from "../../utils"
 
 const Search: React.FC = () => {
   const [term, setTerm] = useState<string>("")

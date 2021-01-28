@@ -2,7 +2,7 @@ import { MaterialIcons } from "@expo/vector-icons"
 import React from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
-import ArtistSearchItem from "./ArtistSearchItem"
+import ArtistSearchItem from "./ArtistItem"
 
 interface Props {
   artistList: Array<artistData> | undefined

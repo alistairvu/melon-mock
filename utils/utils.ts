@@ -1,6 +1,6 @@
 // Get Spotify API Token
 
-import { clientID, clientSecret } from "./secrets"
+import { clientID, clientSecret } from "../secrets"
 import { Buffer } from "buffer"
 
 export const getToken = async () => {

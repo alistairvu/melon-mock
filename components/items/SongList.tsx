@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { TouchableOpacity } from "react-native-gesture-handler"
-import SongItem from "../items/SongItem"
+import SongItem from "./SongItem"
 import { MaterialIcons } from "@expo/vector-icons"
 
 interface Props {

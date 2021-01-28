@@ -2,7 +2,7 @@ import { RouteProp, useRoute } from "@react-navigation/native"
 import React from "react"
 import { View, Text, FlatList, StyleSheet } from "react-native"
 import SongItem from "../../components/items/SongItem"
-import AlbumSearchItem from "../../components/search/AlbumSearchItem"
+import AlbumSearchItem from "../../components/items/AlbumItem"
 
 type ParamList = {
   AllSongs: {

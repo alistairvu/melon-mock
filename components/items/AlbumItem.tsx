@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { Text, Image, TouchableOpacity, StyleSheet } from "react-native"
 
-const AlbumSearchItem: React.FC<albumData> = (props) => {
+const AlbumItem = (props: albumData) => {
   const { artist, image, albumName, releaseDate, albumId } = props
   const navigation = useNavigation()
 
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default AlbumSearchItem
+export default AlbumItem

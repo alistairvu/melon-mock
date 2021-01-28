@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native"
 import { FlatList } from "react-native-gesture-handler"
-import AlbumSearchItem from "./AlbumSearchItem"
+import AlbumItem from "./AlbumItem"
 
 interface Props {
   albumList: Array<albumData> | undefined
@@ -45,7 +45,7 @@ const AlbumList: React.FC<Props> = ({ albumList, query }) => {
           data={displayList}
           showsHorizontalScrollIndicator={false}
           horizontal={true}
-          renderItem={({ item }) => <AlbumSearchItem {...item} />}
+          renderItem={({ item }) => <AlbumItem {...item} />}
           keyExtractor={(item) => item.albumId}
         />
       </View>

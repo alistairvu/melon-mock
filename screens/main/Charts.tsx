@@ -3,37 +3,22 @@ import { ActivityIndicator, FlatList } from "react-native"
 import { SafeAreaView, StyleSheet, View, ScrollView } from "react-native"
 import ChartItem from "../../components/items/SongItem"
 import { StatusBar } from "expo-status-bar"
-import { getToken } from "../../utils"
+import { getToken } from "../../utils/utils"
 import ScreenHeader from "../../components/ScreenHeader"
+import { getChart } from "../../utils"
 
 const Charts: React.FC = () => {
   const [loaded, setLoaded] = useState<boolean>(false)
-  const [songData, setSongData] = useState<Array<any>>([])
+  const [songData, setSongData] = useState<Array<any> | undefined>([])
 
-  const getSongs = async () => {
-    const token = await getToken()
-    try {
-      const res = await fetch(
-        "https://api.spotify.com/v1/playlists/37i9dQZF1DXcBWIGoYBM5M/tracks?market=VN&fields=items(track(album(images%2Cname%2Crelease_date%2Cartists)%252Cartists(name)%252Cname%252Cid))",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      const data = await res.json()
-      setSongData(data.items)
-      setLoaded(true)
-    } catch (error) {
-      console.log(error)
-    }
+  const fetchChart = async () => {
+    const data = await getChart()
+    setSongData(data)
+    setLoaded(true)
   }
 
   useEffect(() => {
-    getSongs()
+    fetchChart()
   }, [])
 
   if (!loaded) {
@@ -56,25 +41,9 @@ const Charts: React.FC = () => {
         <StatusBar style="dark" />
         <FlatList
           data={songData}
-          renderItem={({ item }) => {
-            const { track } = item
-            const { album, artists, name } = track
-            return (
-              <ChartItem
-                title={name}
-                albumArtist={album.artists
-                  .map((x: { name: any }) => x.name)
-                  .join(", ")}
-                artist={artists.map((x: { name: any }) => x.name).join(", ")}
-                image={album.images[0].url}
-                albumName={album.name}
-                releaseDate={album["release_date"]}
-                albumId={album.id}
-              />
-            )
-          }}
+          renderItem={({ item }) => <ChartItem {...item} />}
           style={styles.chartList}
-          keyExtractor={(item) => item.track.id}
+          keyExtractor={(item, index) => `${item}${index}`}
         />
       </SafeAreaView>
     </View>
